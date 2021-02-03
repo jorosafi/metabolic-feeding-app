@@ -45,6 +45,17 @@ Given the importance of this formula, caregivers are encouraged to always keep a
 in case of emergency or shipment delays. The caregivers can input the formula recipe and the supply of ingredients, 
 so the app can estimate how many days worth of ingredients the caregivers have left. 
 
+### User Stories
+These are the use cases I envision for this app:
+
+- As a user, I want to be able to input a daily feeding routine that divides the feeds into X number of feeds per day.
+- As a user, I want to be able to assign each feed to a caregiver
+- As a user, I want to be able to mark a feed as complete and input how much of the feed the baby finished 
+and how long it took
+- As a user, I want to see daily totals of how much the baby ate as well as weekly averages
+- As a user, I want to be able to input the supply of formula ingredients I have, along with the daily recipe and
+know how long the existing ingredient supply will last. 
+
 ### Looking ahead
 
 After I am done with CPSC 210, I would like to add extra features to this app as the baby grows and our needs evolve. 
