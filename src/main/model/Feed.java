@@ -5,10 +5,11 @@ public class Feed {
     private int amount;
     private int caregiverResponsible;
     private int leftover;
+    private int time; //24hr
 
     //REQUIRES: amount in ml
     //EFFECT: constructor for Feed
-    public void feed(int amount) {
+    public void feed(int amount, int time) {
         this.amount = amount;
     }
 

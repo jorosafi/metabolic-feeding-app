@@ -10,7 +10,10 @@ public class DailySchedule {
     //REQUIRES: start time listed in 24hr format (ie. 2200) and feed interval is time between feeds (ie. 3)
     //EFFECT: constructor for DailySchedule
     public void dailySchedule(int startTime, int feedInterval) {
+
         this.dailySchedule = new ArrayList<Feed>();
+
+        //add feeds that will go into the schedule feed1 = new feed(time)
     }
 
     //REQUIRES: time in 24hr format
