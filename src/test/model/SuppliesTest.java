@@ -2,6 +2,9 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.HashMap;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SuppliesTest {
@@ -10,7 +13,7 @@ public class SuppliesTest {
 
     @BeforeEach
     public void setUp() {
-        testSupplyList = new Supplies(6, 8, 2);
+        testSupplyList = new Supplies(6, 8, 200);
     }
 
     @Test
@@ -43,12 +46,33 @@ public class SuppliesTest {
     public void addGlycine(){
         int glycineAmount = testSupplyList.getGlycine();
 
-        assertEquals(2, glycineAmount);
+        assertEquals(200, glycineAmount);
 
-        testSupplyList.addGlycine(5);
+        testSupplyList.addGlycine(500);
 
         glycineAmount = testSupplyList.getGlycine();
 
-        assertEquals(7, glycineAmount);
+        assertEquals(700, glycineAmount);
+    }
+
+    @Test
+    public void estimateSupplyTest() {
+        RegularRecipe testRecipe = new RegularRecipe(10,10,10,1,10,900);
+
+        double ivalexEstimate = testSupplyList.getIvalex()*400/testRecipe.getIvalex();
+        double proPhreeEstimate = testSupplyList.getProPhree()*400/testRecipe.getProPhree();
+        double glycineEstimate = testSupplyList.getGlycine()/testRecipe.getGlycine();
+
+        HashMap<String, Double> totalEstimate = new HashMap<String, Double>();
+
+        totalEstimate.put("Ivalex", ivalexEstimate);
+        totalEstimate.put("Pro Phree", proPhreeEstimate);
+        totalEstimate.put("Glycine", ivalexEstimate);
+
+    }
+
+    @Test
+    public void estimateSupplyTestAfterFiveDays(){
+        //TODO create test for estimate supply after x number of days
     }
 }

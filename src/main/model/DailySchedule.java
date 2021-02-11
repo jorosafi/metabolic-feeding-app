@@ -1,32 +1,48 @@
 package model;
 
-import java.util.ArrayList;
+import ui.FeedingApp;
+import java.util.HashMap;
 
 public class DailySchedule {
 
-    private int numberOfFeeds;
-    private ArrayList<Feed> dailySchedule;
+    private HashMap<Feed, Caregiver> dailySchedule;
 
     //REQUIRES: start time listed in 24hr format (ie. 2200) and feed interval is time between feeds (ie. 3)
     //EFFECT: constructor for DailySchedule
-    public void dailySchedule(int startTime, int feedInterval) {
+    public DailySchedule(int startTime, int feedInterval) {
 
-        this.dailySchedule = new ArrayList<Feed>();
+        this.dailySchedule = new HashMap<>();
 
-        //add feeds that will go into the schedule feed1 = new feed(time)
+        int numberOfFeeds = 24 / feedInterval;
+
+        RegularRecipe currentRecipe = FeedingApp.currentRecipe;
+        int nextTime = startTime;
+
+        double feedAmount = currentRecipe.getVolume() / numberOfFeeds;
+
+        for (int i = numberOfFeeds; i > 0; i--) {
+            this.dailySchedule.put(new Feed(nextTime, feedAmount), null);
+            nextTime = nextTime + feedInterval;
+        }
     }
 
-    //REQUIRES: time in 24hr format
+    //REQUIRES: An existing time in the schedule. time in 24hr format
     //Modifies: this
     //EFFECT: Assigns a feeding time to the caregiver responsible for that feed
-    public void assignFeeds(int time, String caregiver) {
-        //TODO
+    public void assignFeeds(int time, Caregiver caregiver) {
+        for (Feed f : this.dailySchedule.keySet()) {
+            if (f.getTime() == time) {
+                this.dailySchedule.put(f, caregiver);
+            }
+        }
+
     }
 
     //REQUIRES: time in 24hr format and type is one of Regular or Sick
     //Modifies: this
     //EFFECT: Adds a new feed to the daily schedule
-    public void addFeed(int time, String type) {
+    //public void addFeed(int time, String type) {
         //TODO
-    }
+        //Aspirational method. Only complete if enough time.
+    //}
 }
