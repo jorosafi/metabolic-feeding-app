@@ -65,7 +65,13 @@ public class FeedingApp {
     }
 
     public void displayMenu() {
-        //TODO
+        System.out.println("\nWelcome to Santiago's Metabolic Feeding App.");
+        System.out.println("\nWhat would you like to do today?");
+        System.out.println("\tl -> Log a Feed");
+        System.out.println("\tnr -> Create a New Recipe");
+        System.out.println("\ts -> Estimate Remaining Supply of Ivalex, Pro Phree and Glycine");
+        System.out.println("\ts -> Add Supply of Ivalex, Pro Phree and Glycine");
+        System.out.println("\tq -> quit");
     }
 
     public void logFeed() {
