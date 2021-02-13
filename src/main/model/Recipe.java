@@ -1,27 +1,49 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
-public interface Recipe {
+public abstract class Recipe implements Ingredients {
 
-    //EFFECT: Changes an existing recipe
-    public void changeRecipe(String ingredient, double amount);
+    protected double ivalex;
+    protected double enfamil;
+    protected double proPhree;
+    protected double glycine;
+    protected double breastMilk;
+    protected double totalVolume;
+    protected HashMap<String, Double> recipe;
 
-    //EFFECT: Returns an existing recipe
-    public HashMap<String, Double> viewRecipe();
+    //EFFECT: returns list of recipe ingredients and amounts of each
+    public HashMap<String, Double> viewRecipe() {
+        return recipe;
+    }
 
-    public double getIvalex();
+    @Override
+    public double getIvalex() {
+        return ivalex;
+    }
 
-    public double getProPhree();
+    @Override
+    public double getProPhree() {
+        return proPhree;
+    }
 
-    public double getGlycine();
+    @Override
+    public double getGlycine() {
+        return glycine;
+    }
 
-    public double getEnfamil();
+    @Override
+    public double getEnfamil() {
+        return enfamil;
+    }
 
-    public double getBreastMilk();
+    @Override
+    public double getBreastMilk() {
+        return breastMilk;
+    }
 
-    public double getVolume();
-
-
+    @Override
+    public double getVolume() {
+        return totalVolume;
+    }
 }

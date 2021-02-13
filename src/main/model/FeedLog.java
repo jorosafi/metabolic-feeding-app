@@ -1,31 +1,32 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class FeedLog {
     private int amountLeft;
     private Feed feed;
-    private Date date;
+    private LocalDate date;
 
     //EFFECTS: Constructor for FeedLog
-    private FeedLog(Date date, Feed feed, int amountLeft) {
+    public FeedLog(LocalDate date, Feed feed, int amountLeft) {
         this.date = date;
         this.feed = feed;
         this.amountLeft = amountLeft;
     }
 
     //EFFECTS: Getter for date
-    private Date getDate() {
+    public Date getDate() {
         return this.date;
     }
 
     //EFFECTS: Getter for feed
-    private Feed getFeed() {
+    public Feed getFeed() {
         return this.feed;
     }
 
     //EFFECTS: Getter for AmountLeft
-    private int getAmountLeft() {
+    public int getAmountLeft() {
         return this.amountLeft;
     }
 }

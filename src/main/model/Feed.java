@@ -15,18 +15,22 @@ public class Feed {
         this.time = time;
     }
 
+    //REQUIRES: amount in ml
+    //Modifies: this
+    //EFFECT: changes the amount of a feed
     public void changeFeedAmount(double newAmount) {
-        //TODO
+        this.amount = newAmount;
     }
 
-    //REQUIRES:
-    //Modifies:
-    //EFFECT: Creates a log of each feed after it has happened
-    public void logFeed() {
-        //TODO
-    }
-
+    //EFFECT: returns feed time
     public int getTime() {
-        return time;
+        return this.time;
     }
+
+    //EffectL returns feed amount
+    public double getAmount() {
+        return this.amount;
+    }
+
+
 }

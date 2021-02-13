@@ -27,31 +27,22 @@ This is why I want to build an app that can help us track his nutritional intake
 shared with his medical team. This app will be used by me and my wife and, if I find it works for us, I can offer to 
 build a publicly available version for other IVA families. 
 
-I am hoping this app will have the following features:
-- A user will be able to input how much the baby needs to eat in a day and over how many feeds. So, a caregiver can
-say the baby needs to eat 800ml of formula spread over 8 feeds in the day. 
-- Each feed can be assigned to a caregiver. So caregiver A can take the feeds 1, 2, and 6, while 
-caregiver B can take the rest of the feeds. 
-- The caregivers can input quantitative and qualitative data about the feed that can be shared with other caregivers
-and the baby's medical team. 
-    - How much did the baby drink? 
-    - How long did it take him to finish the feed?
-    - Did he spit or puke a lot?
-    - Was he still hungry after the feed?
-- The app will add up how much of the feed the baby missed throughout the day. This information can be passed on to the 
-medical team by the caregivers as needed. 
+While I have bigger ambitions for this app, for the scope of this project, I will limit it to the following features:
+- A user will be able to add a recipe for the daily formula and the number of feeds in a day. So, a caregiver can
+say the baby needs to eat 800ml of formula with x, y and z ingredients to be consumed over 8 feeds in the day. 
+- At the end of a feed, the caregivers can log the amount left over by the child. The app will add up how much of 
+the feed the baby missed throughout the day. 
 - The caregivers can track the supply of medical formula ingredients left and when new orders have to be made. 
-Given the importance of this formula, caregivers are encouraged to always keep a month's supply of the formula 
+Given the importance of this formula, caregivers are encouraged to always keep a month's supply of the medical formula 
 in case of emergency or shipment delays. The caregivers can input the formula recipe and the supply of ingredients, 
-so the app can estimate how many days worth of ingredients the caregivers have left. 
+and the will can estimate how many days worth of ingredients the caregivers have left. 
 
 ### User Stories
 These are the use cases I envision for this app:
 
-- As a user, I want to be able to input a daily feeding routine that divides the feeds into X number of feeds per day.
-- As a user, I want to be able to assign each feed to a caregiver
-- As a user, I want to be able to mark a feed as complete and input how much of the feed the baby finished 
-and how long it took
+- As a user, I want to be able to input a formula recipe
+- As a user, I want the app to divide up the daily feeds into a given number of feeds per day at specific times
+- As a user, I want to be able to mark a feed as complete and input how much of the feed the baby left behind
 - As a user, I want to see daily totals of how much the baby ate as well as weekly averages
 - As a user, I want to be able to input the supply of formula ingredients I have, along with the daily recipe and
 know how long the existing ingredient supply will last. 
@@ -62,11 +53,5 @@ After I am done with CPSC 210, I would like to add extra features to this app as
 Eventually, I would like to take this code base and use it for an android app that includes a cloud database so each 
 caregiver can input and view information from their phones or any connected device.
 
-As he starts eating solid foods, it's also important to track the nutritional information of foods, so in the long run 
-I would like to find a database of nutritional information for foods that can connect to the app to track the 
-nutritional intake of the child as he grows up. 
-
-Other apps for children and adults with organic acidemias (the family of diseases that IVA belongs to) have been 
-developed, but none of them meet all the criteria of being good, be available on android, and have all the features
-we need. If I decide to develop this further, I may reach out to the developers of the existing apps and see if it is 
-possible to collaborate to improve existing products. 
+As he starts eating solid foods, it's also important to track the nutritional information of solid foods, 
+so in the long run I would like to find a database of nutritional information for foods that  I can connect to the app. 
