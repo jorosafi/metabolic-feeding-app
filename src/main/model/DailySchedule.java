@@ -39,14 +39,14 @@ public class DailySchedule {
     }
 
     //MODIFIES: this
-    //EFFECTS: removes first feed from dailyFeed
-    public void removeFeed() {
+    //EFFECTS: removes first feed from dailyFeed array list
+    public void removeFirstFeed() {
         this.dailySchedule.remove(0);
     }
 
 
     //getter for dailySchedule
-    public List getDailySchedule() {
+    public ArrayList<Feed> getDailySchedule() {
         return this.dailySchedule;
     }
 

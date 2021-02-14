@@ -52,10 +52,10 @@ class DailyScheduleTest {
     public void removeFeedTest() {
         assertEquals("" + todayFormatted + " - 2", testSchedule.getFeedByIndex(0).getTime());
 
-        testSchedule.removeFeed();
+        testSchedule.removeFirstFeed();
         assertEquals("" + todayFormatted + " - 6", testSchedule.getFeedByIndex(0).getTime());
 
-        testSchedule.removeFeed();
+        testSchedule.removeFirstFeed();
         assertEquals("" + todayFormatted + " - 10", testSchedule.getFeedByIndex(0).getTime());
     }
 }

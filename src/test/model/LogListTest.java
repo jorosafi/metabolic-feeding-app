@@ -3,38 +3,74 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class LogListTest {
+
+    //fields
     private DailySchedule testSchedule;
     private LogList testLogList;
     private Recipe recipe;
+    private Log log1;
+    private Log log2;
+    private Log log3;
+    private Log log4;
+    private Log log5;
 
     @BeforeEach
     public void setUp() {
         recipe = new Recipe(10, 10, 10, 10, 10, 960);
         testSchedule = new DailySchedule(recipe);
         testLogList = new LogList();
+
+        log1 = new Log(testSchedule.getFeedByIndex(0), 20);
+        log2 = new Log(testSchedule.getFeedByIndex(1), 0);
+        log3 = new Log(testSchedule.getFeedByIndex(2), 10);
+        log4 = new Log(testSchedule.getFeedByIndex(3), 40);
+        log5 = new Log(testSchedule.getFeedByIndex(4), 30);
+
+        testLogList.addLog(log1);
+        testLogList.addLog(log2);
+        testLogList.addLog(log3);
+        testLogList.addLog(log4);
+
     }
 
     @Test
-    public void logFeedTest() {
-        testLogList.logFeed(30);
-        testLogList.logFeed(20);
-        testLogList.logFeed(0);
-        testLogList.logFeed(15);
-
-        Log log1 = testLogList.getLogByIndex(0);
-        Log log2 = testLogList.getLogByIndex(0);
-        Log log3 = testLogList.getLogByIndex(0);
-        Log log4 = testLogList.getLogByIndex(0);
+    public void addLogTest() {
 
         assertEquals(4, testLogList.logListSize());
-        assertEquals(30, log1.getAmount());
-        assertEquals(20, log2.getAmount());
-        assertEquals(0, log3.getAmount());
-        assertEquals(15, log4.getAmount());
 
-        assertEquals(2, testSchedule.feedsLeftInDay());
+        testLogList.addLog(log4);
+
+        assertEquals(5, testLogList.logListSize());
     }
+
+    @Test
+    public void getLogByFeedTest() {
+        Date today = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yy.MM.dd");
+        String todayFormatted = "" + dateFormat.format(today) + "";
+
+        Log sixAMFeed = testLogList.getLogByFeed(todayFormatted + " - 6");
+        assertEquals(log2, sixAMFeed);
+
+        Log twoPMFeed = testLogList.getLogByFeed(todayFormatted + " - 14");
+        assertEquals(log4, twoPMFeed);
+
+        Log tenPMFeed = testLogList.getLogByFeed(todayFormatted + " - 22");
+        assertNull(tenPMFeed);
+    }
+
+    @Test
+    public void getLogByIndexTest() {
+        assertEquals(log2, testLogList.getLogByIndex(1));
+        assertEquals(log4, testLogList.getLogByIndex(3));
+    }
+
+    //TODO add test for addAmountLeftInDay
 }

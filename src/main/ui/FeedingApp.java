@@ -2,12 +2,10 @@ package ui;
 
 import model.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
-//This class is largely based off the course's TellerApp ui: https://github.students.cs.ubc.ca/CPSC210/TellerApp.
+//The functionality of this class is largely based off the course's TellerApp
+// ui: https://github.students.cs.ubc.ca/CPSC210/TellerApp.
 // Many of the methods were taken from the TellerApp class and modified for the purpose of this app.
 
 public class FeedingApp {
@@ -31,7 +29,7 @@ public class FeedingApp {
     // EFFECTS: processes user input
     public void runFeedingApp() {
         boolean keepGoing = true;
-        String command = null;
+        String command;
 
         init();
 
@@ -50,6 +48,7 @@ public class FeedingApp {
         System.out.println("\nGoodbye!");
     }
 
+    //EFFECTS: redirects user commands to appropriate methods
     public void processCommand(String command) {
         if (command.equals("lf")) {
             logFeed();
@@ -65,11 +64,15 @@ public class FeedingApp {
             viewLog();
         } else if (command.equals("vs")) {
             viewSchedule();
+        } else if (command.equals("al")) {
+            addLogAmount();
         } else {
             System.out.println("Selection not valid...");
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes default Recipe, DailySchedule, Ingredient Supply, log list, and Scanner input
     public void init() {
         currentRecipe = new Recipe(40, 35,
                 15, 1.8, 350, 960);
@@ -79,6 +82,7 @@ public class FeedingApp {
         input = new Scanner(System.in);
     }
 
+    //EFFECTS: Displays main user menu
     public void displayMenu() {
         System.out.println("\nWelcome to Santiago's Metabolic Feeding App.");
         System.out.println("\nWhat would you like to do today?");
@@ -87,24 +91,90 @@ public class FeedingApp {
         System.out.println("\tvs -> View the feeding schedule");
         System.out.println("\tlf -> Log a feed");
         System.out.println("\tvl -> View the feeding log");
+        System.out.println("\tal -> View how much " + BABY_NAME + " has left today so far");
         System.out.println("\tai -> Add ingredients to the supply");
         System.out.println("\tes -> Estimate how long the ingredient supply will last");
         System.out.println("\tq -> Close the App");
     }
 
+    //MODIFIES: feedLogList and feedingSchedule
+    //EFFECTS: Creates new log from next Feed in feedingSchedule and adds it to the feedLogList
     public void logFeed() {
-        //TODO
+        Feed latestFeed = feedingSchedule.getFeedByIndex(0);
+        System.out.println("\nYou are logging the " + latestFeed.getTime() + " feed.");
+        System.out.println("Did " + BABY_NAME + " leave any of his meal? please enter the amount in ml.");
+
+        int leftOver = input.nextInt();
+
+        Log log = new Log(latestFeed, leftOver);
+
+        feedLogList.addLog(log);
+        feedingSchedule.removeFirstFeed();
+
+        System.out.println("\nThank you for logging a feed. Would you like to log another feed?");
+        System.out.println("\tlf -> Log another feed");
+        System.out.println("\tal -> View how much " + BABY_NAME + " has left today so far");
+        System.out.println("\tpress any key to return to the main menu");
+
+        String nextCommand = input.next();
+
+        if (nextCommand.equals("lf")) {
+            logFeed();
+        } else if (nextCommand.equals("al")) {
+            addLogAmount();
+        }
     }
 
-
+    //EFFECTS: prints out the feedingSchedule
     private void viewSchedule() {
-        //TODO
+        System.out.println("\n" + BABY_NAME + " has to eat at the following times today:");
+        System.out.println("\t Time(24hr) - Amount(ml)");
+
+        ArrayList<Feed> schedule = feedingSchedule.getDailySchedule();
+
+        for (Feed f : schedule) {
+            String time = f.getTime();
+            double amount = f.getAmount();
+            System.out.println(time + " - " + amount);
+        }
+
+        System.out.println("\nWould you like to log a feed?");
+        System.out.println("\tlf -> Log feed");
+        System.out.println("\tEnter any key to return to the main menu");
+
+        String nextCommand = input.next();
+
+        if (nextCommand.equals("lf")) {
+            logFeed();
+        }
     }
 
+    //EFFECTS: Prints out hte feedLogList
     private void viewLog() {
-        //TODO
+        System.out.println("\nThese are " + BABY_NAME + "'s latest feeds:");
+        System.out.println("\t Date and Time(24hr) | Size of Feed(ml) | Amount Left(ml)");
+
+        ArrayList<Log> log = feedLogList.getLogList();
+
+        for (Log l : log) {
+            String feedTime = l.getFeed().getTime();
+            double feedAmount = l.getFeed().getAmount();
+            double amountLeft = l.getAmount();
+            System.out.println(feedTime + " | " + feedAmount + " | " + amountLeft);
+        }
+
+        System.out.println("\nWould you like to log a feed?");
+        System.out.println("\tlf -> Log feed");
+        System.out.println("\tEnter any key to return to the main menu");
+
+        String nextCommand = input.next();
+
+        if (nextCommand.equals("lf")) {
+            logFeed();
+        }
     }
 
+    //EFFECTS: prints out the currentRecipe
     public void viewRecipe() {
         double enfamilAmount = currentRecipe.getEnfamil();
         double ivalexAmount = currentRecipe.getIvalex();
@@ -132,6 +202,8 @@ public class FeedingApp {
 
     }
 
+    //MODIFIES: currentRecipe, ingredientSupply
+    //EFFECTS: Creates a new recipe and removes one day's worth of ingredients from ingredientSupply
     public void newRecipe() {
         System.out.println("Enter the amount for each Ingredient:");
         System.out.println("I-valex - enter amount in grams");
@@ -157,6 +229,7 @@ public class FeedingApp {
         newRecipeThankYouMenu();
     }
 
+    //EFFECTS: Generates Thank You menu for newRecipe()
     private void newRecipeThankYouMenu() {
         System.out.println("\nThank you! Your recipe has been created");
 
@@ -173,10 +246,8 @@ public class FeedingApp {
         }
     }
 
+    //EFFECTS: Estimates how long current supply of medical ingredients will last if using currentRecipe
     private void estimateSupply() {
-        double estimateIvalex;
-        double estimateProPhree;
-        double estimateGlycine;
 
         HashMap<String, Double> supplyEstimate = ingredientSupply.estimateIngredientSupply(currentRecipe);
 
@@ -198,6 +269,8 @@ public class FeedingApp {
         }
     }
 
+    //MODIFIES: ingredientSupply
+    //EFFECTS: Allows user to add I-valex, Pro Phree and Glycine to the ingredientSupply
     private void addSupply() {
         System.out.println("Enter the amount you would like to add for each Ingredient:");
         System.out.println("I-valex - enter amount in grams");
@@ -222,8 +295,10 @@ public class FeedingApp {
         }
     }
 
-    public Recipe getCurrentRecipe() {
-
-        return currentRecipe;
+    //EFFECTS: adds up the amount of food leftover in logList. Log currently only supports one day.
+    private void addLogAmount() {
+        int amountLeftInDay = feedLogList.addAmountLeftInDay();
+        System.out.println("\n" + BABY_NAME + " has failed to drink " + amountLeftInDay + "ml so far today");
     }
+
 }

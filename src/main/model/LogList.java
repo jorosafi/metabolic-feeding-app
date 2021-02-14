@@ -10,32 +10,52 @@ public class LogList {
     //EFFECTS: Constructor for FeedLog
     public LogList() {
         this.logList = new ArrayList<>();
-        //TODO finish constructor
     }
 
-    //REQUIRES: amount left in a feed measured in ml. Assume DailySchedule is not empty
     //MODIFIES: this
-    //EFFECTS: Removes next feed in Daily Schedule, creates a new Log  with amount of feed leftover
-    //          and inserts it into LogList.
-    public void logFeed(int amountLeft) {
-        //TODO finish logFeed method
+    //EFFECTS: Adds log to the log list.
+    public void addLog(Log log) {
+        this.logList.add(log);
     }
 
     //REQUIRES: timeOfFeed must be a string in format YY.MM.dd - HH
-    //EFFECTS: Getter for date
-    public Log getLogByFeed(String timeOfFeed) {
-        return null;
-        //TODO
+    //EFFECTS: Returns the Log of a feed by its date
+    public Log getLogByFeed(String timeToSearchBy) {
+        Log log = null;
+
+        for (Log l : logList) {
+            Feed feed = l.getFeed();
+            String timeOfFeed = feed.getTime();
+            if (timeToSearchBy.equals(timeOfFeed)) {
+                log = l;
+            }
+        }
+        return log;
     }
 
-    //EFFECTS: returns the size of the logList
-    public int logListSize() {
-        return 0;
+    //EFFECTS: Add amount left in a day
+    public int addAmountLeftInDay() {
+        int amountLeft = 0;
+
+        for (Log l : logList) {
+            amountLeft = amountLeft + l.getAmount();
+        }
+        return amountLeft;
     }
 
     //EFFECTS: returns Log in logList by index
     public Log getLogByIndex(int index) {
-        return null;
+        return logList.get(index);
+    }
+
+    //EFFECTS: returns the size of the logList
+    public int logListSize() {
+        return logList.size();
+    }
+
+    //EFFECTS: Getter for logList
+    public ArrayList<Log> getLogList() {
+        return logList;
     }
 
 }
