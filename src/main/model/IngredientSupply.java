@@ -56,21 +56,9 @@ public class IngredientSupply {
         return glycine;
     }
 
-    //EFFECT: Estimates how long current supply of Ivalex will last
-    public int estimateIvalexSupply() {
-        return 0;
-        //TODO
-    }
-
-    //EFFECT: Estimates how long current supply of ProPhree will last
-    public int estimateProPhreeSupply() {
-        return 0;
-        //TODO
-    }
-
-    //EFFECT: Estimates how long current supply of Glycine will last
-    public int estimateGlycineSupply() {
-        return 0;
+    //EFFECT: Estimates how long supply of medical ingredients will last under current recipe
+    public HashMap<String, Double> estimateIngredientSupply() {
+        return null;
         //TODO
     }
 

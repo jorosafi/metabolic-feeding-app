@@ -10,8 +10,8 @@ import java.util.Scanner;
 
 public class FeedingApp {
 
-  /*  private Recipe currentRecipe;
-    private SickDayRecipe currentSickRecipe;
+/*   private Recipe currentRecipe;
+   private SickDayRecipe currentSickRecipe;
     private LogList feedLogList;
     private final String babyName = "Santiago";
 
@@ -151,7 +151,7 @@ public class FeedingApp {
         //TODO
     }
 
-    private Recipe getCurrentRecipe{
+    public Recipe getCurrentRecipe{
         return currentRecipe;
     }*/
 }

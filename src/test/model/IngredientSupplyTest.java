@@ -7,39 +7,39 @@ import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SuppliesTest {
+public class IngredientSupplyTest {
 
     private IngredientSupply testSupplyList;
 
     @BeforeEach
     public void setUp() {
-        testSupplyList = new IngredientSupply(6, 8, 200);
+        testSupplyList = new IngredientSupply(600, 800, 200);
     }
 
     @Test
     public void addIvalexTest(){
         int ivalexAmount = testSupplyList.getIvalex();
 
-        assertEquals(6, ivalexAmount);
+        assertEquals(600, ivalexAmount);
 
-        testSupplyList.addIvalex(5);
+        testSupplyList.addIvalex(200);
 
         ivalexAmount = testSupplyList.getIvalex();
 
-        assertEquals(11, ivalexAmount);
+        assertEquals(800, ivalexAmount);
     }
 
     @Test
     public void addProPhreeTest(){
         int proPhreeAmount = testSupplyList.getProPhree();
 
-        assertEquals(8, proPhreeAmount);
+        assertEquals(800, proPhreeAmount);
 
-        testSupplyList.addProPhree(4);
+        testSupplyList.addProPhree(400);
 
         proPhreeAmount = testSupplyList.getProPhree();
 
-        assertEquals(12, proPhreeAmount);
+        assertEquals(1200, proPhreeAmount);
     }
 
     @Test
@@ -56,23 +56,22 @@ public class SuppliesTest {
     }
 
     @Test
-    public void estimateSupplyTest() {
-        Recipe testRecipe = new Recipe(10,10,10,1,10,900);
+    public void estimateIngredientSupplyTest() {
+        Recipe testRecipe = new Recipe(40,35,
+                15,1.8, 350,960);
 
-        double ivalexEstimate = testSupplyList.getIvalex()*400/testRecipe.getIvalex();
-        double proPhreeEstimate = testSupplyList.getProPhree()*400/testRecipe.getProPhree();
+
+        double ivalexEstimate = testSupplyList.getIvalex()/testRecipe.getIvalex();
+        double proPhreeEstimate = testSupplyList.getProPhree()/testRecipe.getProPhree();
         double glycineEstimate = testSupplyList.getGlycine()/testRecipe.getGlycine();
 
         HashMap<String, Double> totalEstimate = new HashMap<String, Double>();
 
         totalEstimate.put("Ivalex", ivalexEstimate);
         totalEstimate.put("Pro Phree", proPhreeEstimate);
-        totalEstimate.put("Glycine", ivalexEstimate);
+        totalEstimate.put("Glycine", glycineEstimate);
 
-    }
+        assertEquals(totalEstimate, testSupplyList.estimateIngredientSupply());
 
-    @Test
-    public void estimateSupplyTestAfterFiveDays(){
-        //TODO create test for estimate supply after x number of days
     }
 }

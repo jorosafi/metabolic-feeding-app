@@ -1,9 +1,6 @@
 package model;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 
 public class LogList {
 
@@ -16,7 +13,7 @@ public class LogList {
         //TODO finish constructor
     }
 
-    //REQUIRES: amount left in a feed measured in ml
+    //REQUIRES: amount left in a feed measured in ml. Assume DailySchedule is not empty
     //MODIFIES: this
     //EFFECTS: Removes next feed in Daily Schedule, creates a new Log  with amount of feed leftover
     //          and inserts it into LogList.
@@ -26,9 +23,19 @@ public class LogList {
 
     //REQUIRES: timeOfFeed must be a string in format YY.MM.dd - HH
     //EFFECTS: Getter for date
-    public Log getLog(String timeOfFeed) {
+    public Log getLogByFeed(String timeOfFeed) {
         return null;
         //TODO
+    }
+
+    //EFFECTS: returns the size of the logList
+    public int logListSize() {
+        return 0;
+    }
+
+    //EFFECTS: returns Log in logList by index
+    public Log getLogByIndex(int index) {
+        return null;
     }
 
 }
