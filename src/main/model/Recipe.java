@@ -1,6 +1,7 @@
 package model;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Recipe {
     private double ivalex;
@@ -36,20 +37,31 @@ public class Recipe {
     public double getIvalex() {
         return ivalex;
     }
+
     public double getProPhree() {
         return proPhree;
     }
+
     public double getGlycine() {
         return glycine;
     }
+
     public double getEnfamil() {
         return enfamil;
     }
+
     public double getBreastMilk() {
         return breastMilk;
     }
+
     public double getVolume() {
         return totalVolume;
+    }
+
+    public void printRecipe() {
+        for (Map.Entry<String, Double> ingredients : this.recipe.entrySet()) {
+            System.out.println(ingredients.getKey() + " -> " + ingredients.getValue());
+        }
     }
 
 }

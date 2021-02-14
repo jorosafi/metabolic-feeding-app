@@ -5,61 +5,107 @@ import java.util.HashMap;
 
 //TODO if time permits, create abstract Ingredients class for Recipe and Supplies
 public class IngredientSupply {
-    private int ivalex;
-    private int proPhree;
-    private int glycine;
-    private HashMap<String, Integer> supplyList;
+
+    //Fields
+    private double ivalex;
+    private double proPhree;
+    private double glycine;
+    private HashMap<String, Double> supplyList;
 
     //REQUIRES: Ingredient supplies measures in gr
     //EFFECT: constructor for Supplies
-    public IngredientSupply(int ivalex, int proPhree, int glycine) {
+    public IngredientSupply(double ivalex, double proPhree, double glycine) {
         this.ivalex = ivalex;
         this.proPhree = proPhree;
         this.glycine = glycine;
 
-        this.supplyList = new HashMap<String, Integer>();
+        this.supplyList = new HashMap<String, Double>();
 
-        supplyList.put("I-Valex", ivalex);
-        supplyList.put("Pro Phree", proPhree);
-        supplyList.put("Glycine", glycine);
+        supplyList.put("I-Valex", this.ivalex);
+        supplyList.put("Pro Phree", this.proPhree);
+        supplyList.put("Glycine", this.glycine);
+    }
+
+    //REQUIRES: amount in gr
+    //Modifies: this
+    //EFFECT: subtracts Ivalex amount from supplyList
+    public void takeIvalex(double amount) {
+        this.ivalex = this.ivalex - amount;
+
+        supplyList.put("I-Valex", this.ivalex);
+    }
+
+    //REQUIRES: amount in gr
+    //Modifies: this
+    //EFFECT: subtracts proPhree amount from supplyList
+    public void takeProPhree(double amount) {
+        this.proPhree = this.proPhree - amount;
+
+        supplyList.put("Pro Phree", this.proPhree);
+    }
+
+    //REQUIRES: amount in gr
+    //Modifies: this
+    //EFFECT: subtracts Glycine amount from supplyList
+    public void takeGlycine(double amount) {
+        this.glycine = this.glycine - amount;
+
+        supplyList.put("Glycine", this.glycine);
     }
 
     //REQUIRES: amount in gr
     //Modifies: this
     //EFFECT: Adds Ivalex stock to the supply list
-    public void addIvalex(int amount) {
-        //TODO
+    public void addIvalex(double amount) {
+        this.ivalex = this.ivalex + amount;
+
+        this.supplyList.put("I-Valex", this.ivalex);
     }
 
     //REQUIRES: amount in gr
     //Modifies: this
     //EFFECT: Adds Pro Phree stock to the supply list
-    public void addProPhree(int amount) {
-        //TODO
+    public void addProPhree(double amount) {
+        this.proPhree = this.proPhree + amount;
+
+        this.supplyList.put("Pro Phree", this.proPhree);
     }
 
     //REQUIRES: amount gr
     //Modifies: this
     //EFFECT: Adds Glycine stock to the supply list
-    public void addGlycine(int amount) {
-        //TODO
+    public void addGlycine(double amount) {
+        this.glycine = this.glycine + amount;
+
+        this.supplyList.put("Glycine", this.glycine);
     }
 
     //Getters for supplies
-    public int getIvalex() {
+    public double getIvalex() {
         return ivalex;
     }
-    public int getProPhree() {
+
+    public double getProPhree() {
         return proPhree;
     }
-    public int getGlycine() {
+
+    public double getGlycine() {
         return glycine;
     }
 
     //EFFECT: Estimates how long supply of medical ingredients will last under current recipe
-    public HashMap<String, Double> estimateIngredientSupply() {
-        return null;
-        //TODO
+    public HashMap<String, Double> estimateIngredientSupply(Recipe recipe) {
+        double ivalexEstimate = this.ivalex / recipe.getIvalex();
+        double proPhreeEstimate = this.proPhree / recipe.getProPhree();
+        double glycineEstimate = this.glycine / recipe.getGlycine();
+
+        HashMap<String, Double> totalEstimate = new HashMap<String, Double>();
+
+        totalEstimate.put("Ivalex", ivalexEstimate);
+        totalEstimate.put("Pro Phree", proPhreeEstimate);
+        totalEstimate.put("Glycine", glycineEstimate);
+
+        return totalEstimate;
     }
 
 }

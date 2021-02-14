@@ -8,10 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LogListTest {
     private DailySchedule testSchedule;
     private LogList testLogList;
+    private Recipe recipe;
 
     @BeforeEach
     public void setUp() {
-        testSchedule = new DailySchedule();
+        recipe = new Recipe(10, 10, 10, 10, 10, 960);
+        testSchedule = new DailySchedule(recipe);
         testLogList = new LogList();
     }
 

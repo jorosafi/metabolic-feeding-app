@@ -2,7 +2,9 @@ package ui;
 
 import model.*;
 
-import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 //This class is largely based off the course's TellerApp ui: https://github.students.cs.ubc.ca/CPSC210/TellerApp.
@@ -10,13 +12,15 @@ import java.util.Scanner;
 
 public class FeedingApp {
 
-/*   private Recipe currentRecipe;
-   private SickDayRecipe currentSickRecipe;
+    private Recipe currentRecipe;
     private LogList feedLogList;
-    private final String babyName = "Santiago";
+    private DailySchedule feedingSchedule;
+    private IngredientSupply ingredientSupply;
+    private static final String BABY_NAME = "Santiago";
 
     private Scanner input;
 
+    //Method taken from TellerApp
     //EFFECTS: Starts the Feeding App
     public FeedingApp() {
         runFeedingApp();
@@ -47,111 +51,179 @@ public class FeedingApp {
     }
 
     public void processCommand(String command) {
-        if (command.equals("l")) {
+        if (command.equals("lf")) {
             logFeed();
-        } else if (command.equals("r")) {
+        } else if (command.equals("vr")) {
             viewRecipe();
         } else if (command.equals("nr")) {
             newRecipe();
-        } else if (command.equals("s")) {
+        } else if (command.equals("es")) {
             estimateSupply();
-        } else if (command.equals("as")) {
+        } else if (command.equals("ai")) {
             addSupply();
+        } else if (command.equals("vl")) {
+            viewLog();
+        } else if (command.equals("vs")) {
+            viewSchedule();
         } else {
             System.out.println("Selection not valid...");
         }
     }
 
     public void init() {
-        currentRecipe = new Recipe(40,35,
-                15,1.8, 350,960);
-
-        currentSickRecipe = new SickDayRecipe(60, 20, 30,
-                2.2,250,960);
-
-
+        currentRecipe = new Recipe(40, 35,
+                15, 1.8, 350, 960);
+        feedingSchedule = new DailySchedule(currentRecipe);
+        ingredientSupply = new IngredientSupply(2200, 1800, 200);
+        feedLogList = new LogList();
+        input = new Scanner(System.in);
     }
 
     public void displayMenu() {
         System.out.println("\nWelcome to Santiago's Metabolic Feeding App.");
         System.out.println("\nWhat would you like to do today?");
-        System.out.println("\tl -> Log a Feed");
         System.out.println("\tnr -> Create a New Recipe");
-        System.out.println("\ts -> Estimate Remaining Supply of Ivalex, Pro Phree and Glycine");
-        System.out.println("\ts -> Add Supply of Ivalex, Pro Phree and Glycine");
-        System.out.println("\tq -> quit");
+        System.out.println("\tvr -> View the Recipe");
+        System.out.println("\tvs -> View the feeding schedule");
+        System.out.println("\tlf -> Log a feed");
+        System.out.println("\tvl -> View the feeding log");
+        System.out.println("\tai -> Add ingredients to the supply");
+        System.out.println("\tes -> Estimate how long the ingredient supply will last");
+        System.out.println("\tq -> Close the App");
     }
 
     public void logFeed() {
-        System.out.print("Would you like to log the most recent feed or a previous one?");
-        System.out.print("\tmr -> Most Recent");
-        System.out.print("\tpo -> Previous One");
-
-        String command = input.next();
-
-        if (command.equals("mr")) {
-            logRecentFeed();
-        } else if (command.equals("po")) {
-            logPreviousFeed();
-        } else {
-            System.out.println("Selection not valid...");
-        }
+        //TODO
     }
 
-    public void logPreviousFeed() {
-        System.out.print("How much formula did " + babyName + " leave? Type the amount in ml");
 
-        int amount = input.nextInt();
-        LocalDate date = LocalDate.now();
-        LogList log;
-        Feed feed = //TODO -- How do I find the most recent feed to add it as a parameter to the new FeedLog?;
-
-
-        log = new LogList(date, feed, amount);
-
-
-
+    private void viewSchedule() {
+        //TODO
     }
 
-    public void logRecentFeed() {
+    private void viewLog() {
         //TODO
     }
 
     public void viewRecipe() {
-        String command = input.next();
+        double enfamilAmount = currentRecipe.getEnfamil();
+        double ivalexAmount = currentRecipe.getIvalex();
+        double proPhreeAmount = currentRecipe.getProPhree();
+        double glycineAmount = currentRecipe.getGlycine();
+        double breastMilkAmount = currentRecipe.getBreastMilk();
+        double totalVolumeAmount = currentRecipe.getVolume();
 
-        System.out.print("The current regular formula recipe is: ");
-        System.out.print(this.currentRecipe.viewRecipe());
+        System.out.println("I-Valex -> " + ivalexAmount + "gr");
+        System.out.println("Enfamil -> " + enfamilAmount + "gr");
+        System.out.println("Pro Phree -> " + proPhreeAmount + "gr");
+        System.out.println("Glycine -> " + glycineAmount + "gr");
+        System.out.println("Breast Milk -> " + breastMilkAmount + "ml");
+        System.out.println("Fill with water to total volume of -> " + totalVolumeAmount + "ml");
 
-        System.out.print("The current sick day formula recipe is: ");
-        System.out.print(this.currentSickRecipe.viewRecipe());
+        System.out.println("\nWould you like to create a new recipe or return to the main menu?");
+        System.out.println("\tnr -> Create a New Recipe");
+        System.out.println("\tpress any key to return to the main menu");
 
-        System.out.print("\tnr -> Create new recipe");
-        System.out.print("\tm -> Return to main menu");
-        //System.out.print("\tq -> Quit"); //TODO
+        String nextCommand = input.next();
 
-        if (command.equals("nr")) {
+        if (nextCommand.equals("nr")) {
             newRecipe();
-        } else if (command.equals("m")) {
-            displayMenu(); //This may throw an infinite loop.
-        } else {
-            System.out.println("Selection not valid...");
         }
+
     }
 
     public void newRecipe() {
-        //TODO
+        System.out.println("Enter the amount for each Ingredient:");
+        System.out.println("I-valex - enter amount in grams");
+        double ivalexAmount = input.nextDouble();
+        System.out.println("Pro Phree - enter amount in grams");
+        double proPhreeAmount = input.nextDouble();
+        System.out.println("Glycine - enter amount in grams");
+        double glycineAmount = input.nextDouble();
+        System.out.println("Enfamil - enter amount in grams");
+        double enfamilAmount = input.nextDouble();
+        System.out.println("Breast Milk - enter amount in ml");
+        double breastMilkAmount = input.nextDouble();
+        System.out.println("Add water to total volume of - enter amount in ml");
+        double totalVolumeAmount = input.nextDouble();
+
+        currentRecipe = new Recipe(ivalexAmount, enfamilAmount, proPhreeAmount,
+                glycineAmount, breastMilkAmount, totalVolumeAmount);
+
+        ingredientSupply.takeGlycine(glycineAmount);
+        ingredientSupply.takeProPhree(proPhreeAmount);
+        ingredientSupply.takeIvalex(ivalexAmount);
+
+        newRecipeThankYouMenu();
+    }
+
+    private void newRecipeThankYouMenu() {
+        System.out.println("\nThank you! Your recipe has been created");
+
+        System.out.println("\tvr -> View your recipe");
+        System.out.println("\tes -> Estimate how long the ingredient supply will last with this recipe");
+        System.out.println("\tpress any key to return to the main menu");
+
+        String nextCommand = input.next();
+
+        if (nextCommand.equals("vr")) {
+            viewRecipe();
+        } else if (nextCommand.equals("es")) {
+            estimateSupply();
+        }
     }
 
     private void estimateSupply() {
-        //TODO
+        double estimateIvalex;
+        double estimateProPhree;
+        double estimateGlycine;
+
+        HashMap<String, Double> supplyEstimate = ingredientSupply.estimateIngredientSupply(currentRecipe);
+
+        System.out.println("\nUnder the current recipe, this is how long your ingredients are estimated to last:");
+
+        for (Map.Entry<String, Double> ingredients : supplyEstimate.entrySet()) {
+            String ingredient = ingredients.getKey();
+            long daysRemaining = Math.round(ingredients.getValue());
+            System.out.println(ingredient + " -> " + daysRemaining + " days");
+        }
+
+        System.out.println("\nTo add to the ingredient supply, type 'ai'");
+        System.out.println("\tpress any other key to return to the main menu");
+
+        String nextCommand = input.next();
+
+        if (nextCommand.equals("ai")) {
+            addSupply();
+        }
     }
 
     private void addSupply() {
-        //TODO
+        System.out.println("Enter the amount you would like to add for each Ingredient:");
+        System.out.println("I-valex - enter amount in grams");
+        double ivalexAmount = input.nextDouble();
+        System.out.println("Pro Phree - enter amount in grams");
+        double proPhreeAmount = input.nextDouble();
+        System.out.println("Glycine - enter amount in grams");
+        double glycineAmount = input.nextDouble();
+
+        ingredientSupply.addIvalex(ivalexAmount);
+        ingredientSupply.addGlycine(glycineAmount);
+        ingredientSupply.addProPhree(proPhreeAmount);
+
+        System.out.println("\nThank you! Your ingredients have been added");
+        System.out.println("\tType 'es' to estimate how long the new supply will last");
+        System.out.println("\tpress any other key to return to the main menu");
+
+        String nextCommand = input.next();
+
+        if (nextCommand.equals("es")) {
+            estimateSupply();
+        }
     }
 
-    public Recipe getCurrentRecipe{
+    public Recipe getCurrentRecipe() {
+
         return currentRecipe;
-    }*/
+    }
 }

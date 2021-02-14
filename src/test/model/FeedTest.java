@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class FeedTest {
 
     @Test
-    private void constructorTest() {
+    public void constructorTest() {
         Feed testFeed1 = new Feed("21.01.13 - 2", 160);
         Feed testFeed2 = new Feed("21.01.13 - 8", 180);
 

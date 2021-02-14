@@ -1,37 +1,47 @@
 package model;
 
-import ui.FeedingApp;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 public class DailySchedule {
 
     public static final int FEEDS_PER_DAY = 6;
+    public static final int START_TIME = 2;
+    public static final int FEED_INTERVAL = 4;
+    private Recipe currentRecipe;
     private ArrayList<Feed> dailySchedule;
 
     //EFFECT: constructor for DailySchedule
-    public DailySchedule() {
+    public DailySchedule(Recipe recipe) {
+
         Date currentTime = new Date();
-        SimpleDateFormat todayFormated = new SimpleDateFormat("yy.MM.dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yy.MM.dd");
+        String todayFormatted = "" + dateFormat.format(currentTime) + "";
 
         this.dailySchedule = new ArrayList<>();
 
-        //TODO come back to this and redo the constructor past this point
+        int numberOfFeeds = 24 / FEED_INTERVAL;
 
-/*        int numberOfFeeds = 24 / feedInterval;
+        this.currentRecipe = recipe;
 
-        Recipe currentRecipe = FeedingApp.currentRecipe;
-        int nextTime = startTime;
+        double feedAmount = this.currentRecipe.getVolume() / numberOfFeeds;
 
-        double feedAmount = currentRecipe.getVolume() / numberOfFeeds;
+        int nextTime = START_TIME;
 
         for (int i = numberOfFeeds; i > 0; i--) {
-            this.dailySchedule.add(new Feed(nextTime, feedAmount));
-            nextTime = nextTime + feedInterval;
-        }*/
+            String timeString = todayFormatted + " - " + nextTime;
+            this.dailySchedule.add(new Feed(timeString, feedAmount));
+            nextTime = nextTime + FEED_INTERVAL;
+        }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: removes first feed from dailyFeed
+    public void removeFeed() {
+        this.dailySchedule.remove(0);
     }
 
 
@@ -43,13 +53,11 @@ public class DailySchedule {
     //REQUIRES: index from 0 to (FEEDS_PER_DAY--)
     //EFFECT: gets the feed in the array at the given index
     public Feed getFeedByIndex(int index) {
-        //todo
-        return null;
+        return this.dailySchedule.get(index);
     }
 
     //EFFECTS: returns the number of feeds still to be completed
     public int feedsLeftInDay() {
-        return 0;
-        //TODO
+        return this.dailySchedule.size();
     }
 }
