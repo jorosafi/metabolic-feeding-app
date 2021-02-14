@@ -9,11 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SuppliesTest {
 
-    private Supplies testSupplyList;
+    private IngredientSupply testSupplyList;
 
     @BeforeEach
     public void setUp() {
-        testSupplyList = new Supplies(6, 8, 200);
+        testSupplyList = new IngredientSupply(6, 8, 200);
     }
 
     @Test
@@ -57,7 +57,7 @@ public class SuppliesTest {
 
     @Test
     public void estimateSupplyTest() {
-        RegularRecipe testRecipe = new RegularRecipe(10,10,10,1,10,900);
+        Recipe testRecipe = new Recipe(10,10,10,1,10,900);
 
         double ivalexEstimate = testSupplyList.getIvalex()*400/testRecipe.getIvalex();
         double proPhreeEstimate = testSupplyList.getProPhree()*400/testRecipe.getProPhree();

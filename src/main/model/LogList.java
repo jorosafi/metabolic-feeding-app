@@ -1,26 +1,34 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
+import java.util.HashMap;
 
 public class LogList {
 
-    private List<FeedLog> logList;
+    private ArrayList<Log> logList;
 
-    //EFFECTS: constructor for LogList
-    private LogList() {
-        this.logList = new ArrayList<FeedLog>();
+
+    //EFFECTS: Constructor for FeedLog
+    public LogList() {
+        this.logList = new ArrayList<>();
+        //TODO finish constructor
     }
 
+    //REQUIRES: amount left in a feed measured in ml
     //MODIFIES: this
-    //EFFECTS: Adds new FeedLog to the Log list
-    private void addFeedLog(FeedLog log) {
-        this.logList.add(log);
+    //EFFECTS: Removes next feed in Daily Schedule, creates a new Log  with amount of feed leftover
+    //          and inserts it into LogList.
+    public void logFeed(int amountLeft) {
+        //TODO finish logFeed method
     }
 
-    //EFFECTS: Returns the full log list
-    private List<FeedLog> viewLogList() {
-        return this.logList;
+    //REQUIRES: timeOfFeed must be a string in format YY.MM.dd - HH
+    //EFFECTS: Getter for date
+    public Log getLog(String timeOfFeed) {
+        return null;
+        //TODO
     }
 
 }

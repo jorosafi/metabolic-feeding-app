@@ -2,48 +2,54 @@ package model;
 
 import java.util.HashMap;
 
-public abstract class Recipe implements Ingredients {
+public class Recipe {
+    private double ivalex;
+    private double enfamil;
+    private double proPhree;
+    private double glycine;
+    private double breastMilk;
+    private double totalVolume;
+    private HashMap<String, Double> recipe;
 
-    protected double ivalex;
-    protected double enfamil;
-    protected double proPhree;
-    protected double glycine;
-    protected double breastMilk;
-    protected double totalVolume;
-    protected HashMap<String, Double> recipe;
+    //REQUIRES: ivalex, enfamil, pro phree and glycine in gr; breast milk and volume in ml
+    //EFFECT: constructor for RegularRecipe
+    public Recipe(double ivalex, double enfamil, double proPhree,
+                  double glycine, double breastMilk, double volume) {
+        this.ivalex = ivalex;
+        this.enfamil = enfamil;
+        this.proPhree = proPhree;
+        this.glycine = glycine;
+        this.breastMilk = breastMilk;
+        this.totalVolume = volume;
 
-    //EFFECT: returns list of recipe ingredients and amounts of each
-    public HashMap<String, Double> viewRecipe() {
-        return recipe;
+        recipe = new HashMap<>();
+
+        recipe.put("I-Valex", ivalex);
+        recipe.put("Enfamil", enfamil);
+        recipe.put("Pro Phree", proPhree);
+        recipe.put("Glycine", glycine);
+        recipe.put("Breast Milk", breastMilk);
+        recipe.put("Water to total volume of:", volume);
     }
 
-    @Override
+    //Getters for Recipe ingredients
     public double getIvalex() {
         return ivalex;
     }
-
-    @Override
     public double getProPhree() {
         return proPhree;
     }
-
-    @Override
     public double getGlycine() {
         return glycine;
     }
-
-    @Override
     public double getEnfamil() {
         return enfamil;
     }
-
-    @Override
     public double getBreastMilk() {
         return breastMilk;
     }
-
-    @Override
     public double getVolume() {
         return totalVolume;
     }
+
 }

@@ -5,12 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class RegularRecipeTest {
-    public RegularRecipe testRecipe;
+public class RecipeTest {
+    public Recipe testRecipe;
 
     @BeforeEach
     public void setUp(){
-        testRecipe = new RegularRecipe(40, 20,
+        testRecipe = new Recipe(40, 20,
                 15, 1.5,350, 920);
     }
 

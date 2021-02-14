@@ -3,7 +3,6 @@ package ui;
 import model.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Scanner;
 
 //This class is largely based off the course's TellerApp ui: https://github.students.cs.ubc.ca/CPSC210/TellerApp.
@@ -11,7 +10,7 @@ import java.util.Scanner;
 
 public class FeedingApp {
 
-    private RegularRecipe currentRecipe;
+  /*  private Recipe currentRecipe;
     private SickDayRecipe currentSickRecipe;
     private LogList feedLogList;
     private final String babyName = "Santiago";
@@ -64,7 +63,7 @@ public class FeedingApp {
     }
 
     public void init() {
-        currentRecipe = new RegularRecipe(40,35,
+        currentRecipe = new Recipe(40,35,
                 15,1.8, 350,960);
 
         currentSickRecipe = new SickDayRecipe(60, 20, 30,
@@ -104,11 +103,11 @@ public class FeedingApp {
 
         int amount = input.nextInt();
         LocalDate date = LocalDate.now();
-        FeedLog log;
+        LogList log;
         Feed feed = //TODO -- How do I find the most recent feed to add it as a parameter to the new FeedLog?;
 
 
-        log = new FeedLog(date, feed, amount);
+        log = new LogList(date, feed, amount);
 
 
 
@@ -152,7 +151,7 @@ public class FeedingApp {
         //TODO
     }
 
-    private RegularRecipe getCurrentRecipe{
+    private Recipe getCurrentRecipe{
         return currentRecipe;
-    }
+    }*/
 }
