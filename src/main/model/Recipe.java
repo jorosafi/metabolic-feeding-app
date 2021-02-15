@@ -1,8 +1,8 @@
 package model;
 
 import java.util.HashMap;
-import java.util.Map;
 
+//Creates data representation for a Recipe, consisting of HashMap of ingredients and amounts.
 public class Recipe {
     private double ivalex;
     private double enfamil;
@@ -56,12 +56,6 @@ public class Recipe {
 
     public double getVolume() {
         return totalVolume;
-    }
-
-    public void printRecipe() {
-        for (Map.Entry<String, Double> ingredients : this.recipe.entrySet()) {
-            System.out.println(ingredients.getKey() + " -> " + ingredients.getValue());
-        }
     }
 
 }

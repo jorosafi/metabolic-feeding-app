@@ -8,37 +8,25 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//Tests the DailySchedule class
 class DailyScheduleTest {
 
     private DailySchedule testSchedule;
-    private Recipe recipe;
     private String todayFormatted;
-    private Feed feed1;
-    private Feed feed2;
-    private Feed feed3;
-    private Feed feed4;
-    private Feed feed5;
-    private Feed feed6;
 
 
     @BeforeEach
     public void setUp() {
-        recipe = new Recipe(10, 10, 10, 10, 10, 960);
+        Recipe recipe = new Recipe(10, 10, 10, 10, 10, 960);
         testSchedule = new DailySchedule(recipe);
 
         Date currentTime = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yy.MM.dd");
-        todayFormatted = ""+dateFormat.format(currentTime)+"";
-
-        feed1 = new Feed("" + todayFormatted + " - 2", 160);
-        feed2 = new Feed("" + todayFormatted + " - 6", 160);
-        feed3 = new Feed("" + todayFormatted + " - 10", 160);
-        feed4 = new Feed("" + todayFormatted + " - 14", 160);
-        feed5 = new Feed("" + todayFormatted + " - 18", 160);
-        feed6 = new Feed("" + todayFormatted + " - 22", 160);
+        todayFormatted = "" + dateFormat.format(currentTime) + "";
     }
 
     @Test
+    //EFFECTS: tests the dailySchedule constructor
     public void constructorTest() {
         assertEquals("" + todayFormatted + " - 2", testSchedule.getFeedByIndex(0).getTime());
         assertEquals("" + todayFormatted + " - 6", testSchedule.getFeedByIndex(1).getTime());
@@ -49,6 +37,7 @@ class DailyScheduleTest {
     }
 
     @Test
+    //EFFECTS tests that the removeFeed method properly removes Feeds from the dailySchedule
     public void removeFeedTest() {
         assertEquals("" + todayFormatted + " - 2", testSchedule.getFeedByIndex(0).getTime());
 
@@ -57,5 +46,11 @@ class DailyScheduleTest {
 
         testSchedule.removeFirstFeed();
         assertEquals("" + todayFormatted + " - 10", testSchedule.getFeedByIndex(0).getTime());
+    }
+
+    @Test
+    //EFFECTS: tests getDaily Schedule
+    public void getDailyScheduleTest() {
+        assertEquals(6, testSchedule.getDailySchedule().size());
     }
 }

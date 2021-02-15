@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+//Creates data representation for LogList, consisting of an ArrayList of Logs
 public class LogList {
 
     private ArrayList<Log> logList;
@@ -33,7 +34,7 @@ public class LogList {
         return log;
     }
 
-    //EFFECTS: Add amount left in a day
+    //EFFECTS: Add up amount left in a day
     public int addAmountLeftInDay() {
         int amountLeft = 0;
 
@@ -43,12 +44,12 @@ public class LogList {
         return amountLeft;
     }
 
-    //EFFECTS: returns Log in logList by index
+    //EFFECTS: Returns Log in logList by index
     public Log getLogByIndex(int index) {
         return logList.get(index);
     }
 
-    //EFFECTS: returns the size of the logList
+    //EFFECTS: Returns the size of the logList
     public int logListSize() {
         return logList.size();
     }

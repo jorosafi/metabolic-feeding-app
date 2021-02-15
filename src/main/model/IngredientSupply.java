@@ -15,13 +15,13 @@ public class IngredientSupply {
     private HashMap<String, Double> supplyList;
 
     //REQUIRES: Ingredient supplies measures in gr
-    //EFFECT: constructor for Supplies
+    //EFFECT: constructor for IngredientSupply
     public IngredientSupply(double ivalex, double proPhree, double glycine) {
         this.ivalex = ivalex;
         this.proPhree = proPhree;
         this.glycine = glycine;
 
-        this.supplyList = new HashMap<String, Double>();
+        this.supplyList = new HashMap<>();
 
         supplyList.put("I-Valex", this.ivalex);
         supplyList.put("Pro Phree", this.proPhree);
@@ -101,7 +101,7 @@ public class IngredientSupply {
         double proPhreeEstimate = this.proPhree / recipe.getProPhree();
         double glycineEstimate = this.glycine / recipe.getGlycine();
 
-        HashMap<String, Double> totalEstimate = new HashMap<String, Double>();
+        HashMap<String, Double> totalEstimate = new HashMap<>();
 
         totalEstimate.put("Ivalex", ivalexEstimate);
         totalEstimate.put("Pro Phree", proPhreeEstimate);

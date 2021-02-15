@@ -1,12 +1,9 @@
 package model;
 
-import java.util.Date;
-
+//Creates data representation for an individual feed, consisting of Date/Time in YY.MM.dd - HH format and amount in ml
 public class Feed {
 
     private double amount;
-    private int caregiverResponsible;
-    private int leftover;
     private String time; //24hr
 
     //REQUIRES: Time format (YY.MM.dd - HH), amount in ml
@@ -22,6 +19,7 @@ public class Feed {
     public String getTime() {
         return this.time;
     }
+
     public double getAmount() {
         return this.amount;
     }

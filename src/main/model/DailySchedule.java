@@ -2,13 +2,11 @@ package model;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
+//Creates data representation for a day-schedule of feeds consisting of an ArrayList of Feeds
 public class DailySchedule {
 
-    public static final int FEEDS_PER_DAY = 6;
     public static final int START_TIME = 2;
     public static final int FEED_INTERVAL = 4;
     private Recipe currentRecipe;
@@ -45,7 +43,7 @@ public class DailySchedule {
     }
 
 
-    //getter for dailySchedule
+    //EFFECTS: getter for dailySchedule
     public ArrayList<Feed> getDailySchedule() {
         return this.dailySchedule;
     }
@@ -56,8 +54,4 @@ public class DailySchedule {
         return this.dailySchedule.get(index);
     }
 
-    //EFFECTS: returns the number of feeds still to be completed
-    public int feedsLeftInDay() {
-        return this.dailySchedule.size();
-    }
 }

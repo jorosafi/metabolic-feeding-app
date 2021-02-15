@@ -4,10 +4,10 @@ import model.*;
 
 import java.util.*;
 
+//Generates UI for user to view information and input commands.
 //The functionality of this class is largely based off the course's TellerApp
 // ui: https://github.students.cs.ubc.ca/CPSC210/TellerApp.
 // Many of the methods were taken from the TellerApp class and modified for the purpose of this app.
-
 public class FeedingApp {
 
     private Recipe currentRecipe;

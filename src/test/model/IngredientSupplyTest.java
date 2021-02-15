@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//Tests IngredientSupplyClass
 public class IngredientSupplyTest {
 
     private IngredientSupply testSupplyList;
@@ -15,12 +16,13 @@ public class IngredientSupplyTest {
     @BeforeEach
     public void setUp() {
         testSupplyList = new IngredientSupply(600, 800, 200);
-        testRecipe = new Recipe(40,35,
-                15,1.8, 350,960);
+        testRecipe = new Recipe(40, 35,
+                15, 1.8, 350, 960);
     }
 
     @Test
-    public void addIvalexTest(){
+    //EFFECTS: tests addIvalex method
+    public void addIvalexTest() {
         double ivalexAmount = testSupplyList.getIvalex();
 
         assertEquals(600, ivalexAmount);
@@ -33,7 +35,8 @@ public class IngredientSupplyTest {
     }
 
     @Test
-    public void addProPhreeTest(){
+    //EFFECTS: Tests addProPhree method
+    public void addProPhreeTest() {
         double proPhreeAmount = testSupplyList.getProPhree();
 
         assertEquals(800, proPhreeAmount);
@@ -46,7 +49,8 @@ public class IngredientSupplyTest {
     }
 
     @Test
-    public void addGlycine(){
+    //EFFECTS: Tests addGlycine method
+    public void addGlycine() {
         double glycineAmount = testSupplyList.getGlycine();
 
         assertEquals(200, glycineAmount);
@@ -59,6 +63,7 @@ public class IngredientSupplyTest {
     }
 
     @Test
+    //EFFECTS: Tests takeIvalex method
     public void takeIvalexTest() {
         double ivalexAmount = testSupplyList.getIvalex();
 
@@ -72,6 +77,7 @@ public class IngredientSupplyTest {
     }
 
     @Test
+    //EFFECTS: tests takeProPhree method
     public void takeProPhreeTest() {
         double proPhreeAmount = testSupplyList.getProPhree();
 
@@ -85,6 +91,7 @@ public class IngredientSupplyTest {
     }
 
     @Test
+    //EFFECTS: tests takeGlycine method
     public void takeGlycineTest() {
         double glycineAmount = testSupplyList.getGlycine();
 
@@ -98,14 +105,15 @@ public class IngredientSupplyTest {
     }
 
     @Test
+    //EFFECTS: tests estimateIngredientSupply method
     public void estimateIngredientSupplyTest() {
 
 
-        double ivalexEstimate = testSupplyList.getIvalex()/testRecipe.getIvalex();
-        double proPhreeEstimate = testSupplyList.getProPhree()/testRecipe.getProPhree();
-        double glycineEstimate = testSupplyList.getGlycine()/testRecipe.getGlycine();
+        double ivalexEstimate = testSupplyList.getIvalex() / testRecipe.getIvalex();
+        double proPhreeEstimate = testSupplyList.getProPhree() / testRecipe.getProPhree();
+        double glycineEstimate = testSupplyList.getGlycine() / testRecipe.getGlycine();
 
-        HashMap<String, Double> totalEstimate = new HashMap<String, Double>();
+        HashMap<String, Double> totalEstimate = new HashMap<>();
 
         totalEstimate.put("Ivalex", ivalexEstimate);
         totalEstimate.put("Pro Phree", proPhreeEstimate);

@@ -4,9 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//Tests the Feed class
 public class FeedTest {
 
     @Test
+    //EFFECTS: Tests that the constructor for Feed works properly
     public void constructorTest() {
         Feed testFeed1 = new Feed("21.01.13 - 2", 160);
         Feed testFeed2 = new Feed("21.01.13 - 8", 180);

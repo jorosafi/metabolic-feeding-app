@@ -1,5 +1,6 @@
 package model;
 
+//Creates data representation for a log entry, consisting of a Feed and an Amount of feed left behind by baby
 public class Log {
     private Feed feed;
     private int amount;
@@ -11,7 +12,7 @@ public class Log {
         this.amount = amount;
     }
 
-    //Getters
+    //Getters for Log
     public Feed getFeed() {
         return this.feed;
     }

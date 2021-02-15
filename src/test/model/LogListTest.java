@@ -9,6 +9,7 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+//Tests LogList class
 public class LogListTest {
 
     //fields
@@ -41,6 +42,7 @@ public class LogListTest {
     }
 
     @Test
+    //EFFECTS: Tests addLog method
     public void addLogTest() {
 
         assertEquals(4, testLogList.logListSize());
@@ -51,6 +53,7 @@ public class LogListTest {
     }
 
     @Test
+    //EFFECTS: Tests getLogByFeed method
     public void getLogByFeedTest() {
         Date today = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yy.MM.dd");
@@ -67,10 +70,19 @@ public class LogListTest {
     }
 
     @Test
+    //EFFECTS: Tests getLogByIndex method
     public void getLogByIndexTest() {
         assertEquals(log2, testLogList.getLogByIndex(1));
         assertEquals(log4, testLogList.getLogByIndex(3));
     }
 
-    //TODO add test for addAmountLeftInDay
+    @Test
+    //EFFECTS: tests addAmountLeftInDay method
+    public void addAmountLeftInDaytest() {
+        assertEquals(70, testLogList.addAmountLeftInDay());
+
+        testLogList.addLog(log5);
+
+        assertEquals(100, testLogList.addAmountLeftInDay());
+    }
 }

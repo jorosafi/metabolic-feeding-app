@@ -1,17 +1,18 @@
 package model;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//Tests Recipe class
 public class RecipeTest {
     public Recipe testRecipe;
 
     @Test
-    public void recipeConstructorTest(){
+    //EFFECTS: Tests constructor for Recipe class
+    public void recipeConstructorTest() {
         testRecipe = new Recipe(40, 20,
-                15, 1.5,350, 920);
+                15, 1.5, 350, 920);
 
         assertEquals(40, testRecipe.getIvalex());
         assertEquals(20, testRecipe.getEnfamil());
@@ -21,7 +22,7 @@ public class RecipeTest {
         assertEquals(920, testRecipe.getVolume());
 
         testRecipe = new Recipe(50, 10,
-                20, 1.8,400, 960);
+                20, 1.8, 400, 960);
 
         assertEquals(50, testRecipe.getIvalex());
         assertEquals(10, testRecipe.getEnfamil());
