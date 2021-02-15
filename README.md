@@ -7,7 +7,7 @@ On his third night at the hospital, the nurses noticed he was breathing abnormal
 further examination and prepared us to be airlifted to Prince George, which had the nearest NICU. 
 
 This started a two-week stay at the hospital in Prince George and later the BC Children's Hospital in Vancouver, 
-where the doctors found Santiago, our baby, has a rare metabolic disease called Isovaleric Acidemia (IVA). He is missing a
+where the doctors found that Santiago, our baby, has a rare metabolic disease called Isovaleric Acidemia (IVA). He is missing a
 digestive enzyme, which prevents him from properly digesting protein. If he has more protein than what his body can
 digest, he can go into a metabolic crisis that can lead to neurological damage and developmental delays. 
 But having too little food can be equally dangerous as the human body breaks down protein in the muscle mass 
@@ -28,22 +28,21 @@ shared with his medical team. This app will be used by me and my wife and, if I 
 build a publicly available version for other IVA families. 
 
 While I have bigger ambitions for this app, for the scope of this project, I will limit it to the following features:
-- A user will be able to add a recipe for the daily formula and the number of feeds in a day. So, a caregiver can
-say the baby needs to eat 800ml of formula with x, y and z ingredients to be consumed over 8 feeds in the day. 
+- A user will be able to add a recipe for the daily formula, which is used to create a feeding schedule for the day.
 - At the end of a feed, the caregivers can log the amount left over by the child. The app will add up how much of 
 the feed the baby missed throughout the day. 
 - The caregivers can track the supply of medical formula ingredients left and when new orders have to be made. 
 Given the importance of this formula, caregivers are encouraged to always keep a month's supply of the medical formula 
 in case of emergency or shipment delays. The caregivers can input the formula recipe and the supply of ingredients, 
-and the will can estimate how many days worth of ingredients the caregivers have left. 
+and the app will estimate how many days worth of ingredients the caregivers have left. 
 
 ### User Stories
 These are the use cases I envision for this app:
 
 - As a user, I want to be able to input a formula recipe
-- As a user, I want the app to divide up the daily feeds into a given number of feeds per day at specific times
+- As a user, I want the app to divide up the daily feeds into a daily schedule
 - As a user, I want to be able to mark a feed as complete and input how much of the feed the baby left behind
-- As a user, I want to see daily totals of how much the baby ate as well as weekly averages
+- As a user, I want to see daily totals of how much the baby ate
 - As a user, I want to be able to input the supply of formula ingredients I have, along with the daily recipe and
 know how long the existing ingredient supply will last. 
 
