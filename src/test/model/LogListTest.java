@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -78,7 +79,7 @@ public class LogListTest {
 
     @Test
     //EFFECTS: tests addAmountLeftInDay method
-    public void addAmountLeftInDaytest() {
+    public void addAmountLeftInDayTest() {
         assertEquals(70, testLogList.addAmountLeftInDay());
 
         testLogList.addLog(log5);

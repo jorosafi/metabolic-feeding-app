@@ -45,6 +45,12 @@ These are the use cases I envision for this app:
 - As a user, I want to see daily totals of how much the baby ate
 - As a user, I want to be able to input the supply of formula ingredients I have, along with the daily recipe and
 know how long the existing ingredient supply will last. 
+- As a user, I want to be able to save the daily schedule and the log feeds, so I can quit and return to the program at 
+    different times.
+- As a user, I want to keep a record of all the feeding logs to gather statistics about the feed to answer questions
+    like, how much was left at the end of the day? What is the average leftover in a given week or month?
+- As a user, I want the ingredient supply to be saved in a file where amounts are deducted each day as new daily
+    schedules are created and amounts can be added. 
 
 ### Looking ahead
 
