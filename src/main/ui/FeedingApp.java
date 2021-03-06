@@ -1,7 +1,10 @@
 package ui;
 
 import model.*;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.IOException;
 import java.util.*;
 
 //Generates UI for user to view information and input commands.
@@ -10,11 +13,16 @@ import java.util.*;
 // Many of the methods were taken from the TellerApp class and modified for the purpose of this app.
 public class FeedingApp {
 
+    private static final String BABY_NAME = "Santiago";
+    private static final String JSON_PATH = "./data/notebook.json";
+    private Notebook notebook;
     private Recipe currentRecipe;
     private LogList feedLogList;
     private DailySchedule feedingSchedule;
     private IngredientSupply ingredientSupply;
-    private static final String BABY_NAME = "Santiago";
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+
 
     private Scanner input;
 
@@ -50,7 +58,9 @@ public class FeedingApp {
 
     //EFFECTS: redirects user commands to appropriate methods
     public void processCommand(String command) {
-        if (command.equals("lf")) {
+        if (command.equals("ln")) {
+            loadSavedNotebook();
+        } else if (command.equals("lf")) {
             logFeed();
         } else if (command.equals("vr")) {
             viewRecipe();
@@ -71,21 +81,29 @@ public class FeedingApp {
         }
     }
 
+
     //MODIFIES: this
     //EFFECTS: initializes default Recipe, DailySchedule, Ingredient Supply, log list, and Scanner input
     public void init() {
-        currentRecipe = new Recipe(40, 35,
-                15, 1.8, 350, 960);
+        notebook = new Notebook();
+
+        currentRecipe = new Recipe(1, 1,
+                1, 1, 1, 1000);
         feedingSchedule = new DailySchedule(currentRecipe);
-        ingredientSupply = new IngredientSupply(2200, 1800, 200);
+        ingredientSupply = new IngredientSupply(1, 1, 1);
         feedLogList = new LogList();
+
         input = new Scanner(System.in);
+
+        jsonWriter = new JsonWriter(JSON_PATH);
+        jsonReader = new JsonReader(JSON_PATH);
     }
 
     //EFFECTS: Displays main user menu
     public void displayMenu() {
         System.out.println("\nWelcome to Santiago's Metabolic Feeding App.");
         System.out.println("\nWhat would you like to do today?");
+        System.out.println("\tln -> Load Saved Notebook");
         System.out.println("\tnr -> Create a New Recipe");
         System.out.println("\tvr -> View the Recipe");
         System.out.println("\tvs -> View the feeding schedule");
@@ -95,6 +113,21 @@ public class FeedingApp {
         System.out.println("\tai -> Add ingredients to the supply");
         System.out.println("\tes -> Estimate how long the ingredient supply will last");
         System.out.println("\tq -> Close the App");
+    }
+
+    //MODIFIES: this
+    //EFFECTS: Loads a notebook from a saved JSON and assigns Recipe, Schedule, LogList and SupplyList from notebook
+    private void loadSavedNotebook() {
+        try {
+            this.notebook = jsonReader.read();
+            this.feedingSchedule = notebook.getSavedSchedule();
+            this.feedLogList = notebook.getSavedLogList();
+            this.currentRecipe = notebook.getSavedRecipe();
+            this.ingredientSupply = notebook.getSavedSupplyList();
+            System.out.println("Your notebook has been loaded");
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_PATH);
+        }
     }
 
     //MODIFIES: feedLogList and feedingSchedule

@@ -1,5 +1,13 @@
 package model;
 
+import org.junit.jupiter.api.Test;
+import persistence.JsonReader;
+
 public class NotebookTest {
-    //TODO write tests for Notebook class
+
+    @Test
+    void notebookSupplyTest() {
+        //stub
+    }
+
 }
