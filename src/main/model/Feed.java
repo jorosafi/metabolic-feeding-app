@@ -1,7 +1,7 @@
 package model;
 
 //Creates data representation for an individual feed, consisting of Date/Time in YY.MM.dd - HH format and amount in ml
-public class Feed {
+public class Feed implements Comparable<Feed> {
 
     private double amount;
     private String time; //24hr
@@ -11,7 +11,6 @@ public class Feed {
     public Feed(String time, double amount) {
         this.amount = amount;
         this.time = time;
-        //TODO finish constructor
     }
 
 
@@ -24,4 +23,8 @@ public class Feed {
         return this.amount;
     }
 
+    @Override
+    public int compareTo(Feed feed) {
+        return this.getTime().compareTo(feed.getTime());
+    }
 }

@@ -1,12 +1,15 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.HashMap;
 
 //TODO if time permits, create abstract Ingredients class for Recipe and Supplies
 
 //Creates data representation for the supply of medical ingredients. Creates HashMap that stores the name of the
 //  ingredient and the amount in stock.
-public class IngredientSupply {
+public class IngredientSupply implements Writable {
 
     //Fields
     private double ivalex;
@@ -110,4 +113,14 @@ public class IngredientSupply {
         return totalEstimate;
     }
 
+    //EFFECTS: Returns ingredient supply in JSON format
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+
+        json.put("ivalex", ivalex);
+        json.put("proPhree", proPhree);
+        json.put("glycine", glycine);
+
+        return json;
+    }
 }

@@ -41,7 +41,7 @@ public class JsonReader {
         JSONObject supplyList = jsonObject.getJSONObject("supplyList");
         JSONObject currentRecipe = jsonObject.getJSONObject("currentRecipe");
         JSONObject todayFeedingSchedule = jsonObject.getJSONObject("todayFeedingSchedule");
-        JSONObject logList = jsonObject.getJSONObject("LogList");
+        JSONObject logList = jsonObject.getJSONObject("logList");
 
         return new Notebook(supplyList, currentRecipe, todayFeedingSchedule, logList);
 

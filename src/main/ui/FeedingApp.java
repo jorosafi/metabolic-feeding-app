@@ -1,9 +1,11 @@
 package ui;
 
 import model.*;
+import org.json.JSONObject;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
@@ -76,6 +78,8 @@ public class FeedingApp {
             viewSchedule();
         } else if (command.equals("al")) {
             addLogAmount();
+        } else if (command.equals("sn")) {
+            saveNotebook();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -85,8 +89,6 @@ public class FeedingApp {
     //MODIFIES: this
     //EFFECTS: initializes default Recipe, DailySchedule, Ingredient Supply, log list, and Scanner input
     public void init() {
-        notebook = new Notebook();
-
         currentRecipe = new Recipe(1, 1,
                 1, 1, 1, 1000);
         feedingSchedule = new DailySchedule(currentRecipe);
@@ -103,7 +105,7 @@ public class FeedingApp {
     public void displayMenu() {
         System.out.println("\nWelcome to Santiago's Metabolic Feeding App.");
         System.out.println("\nWhat would you like to do today?");
-        System.out.println("\tln -> Load Saved Notebook");
+        System.out.println("\tln -> Load Notebook");
         System.out.println("\tnr -> Create a New Recipe");
         System.out.println("\tvr -> View the Recipe");
         System.out.println("\tvs -> View the feeding schedule");
@@ -112,7 +114,27 @@ public class FeedingApp {
         System.out.println("\tal -> View how much " + BABY_NAME + " has left today so far");
         System.out.println("\tai -> Add ingredients to the supply");
         System.out.println("\tes -> Estimate how long the ingredient supply will last");
+        System.out.println("\tsn -> Save Notebook");
         System.out.println("\tq -> Close the App");
+    }
+
+    //EFFECTS: saves current notebook to a JSON file
+    private void saveNotebook() {
+        JSONObject supplyListToSave = this.ingredientSupply.toJson();
+        JSONObject recipeToSave = this.currentRecipe.toJson();
+        JSONObject feedingScheduleToSave = this.feedingSchedule.toJson();
+        JSONObject logListToSave = this.feedLogList.toJson();
+
+        this.notebook = new Notebook(supplyListToSave,recipeToSave, feedingScheduleToSave, logListToSave);
+
+        try {
+            jsonWriter.open();
+            jsonWriter.write(notebook);
+            jsonWriter.close();
+            System.out.println("The Notebook has been saved");
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_PATH);
+        }
     }
 
     //MODIFIES: this
@@ -120,10 +142,10 @@ public class FeedingApp {
     private void loadSavedNotebook() {
         try {
             this.notebook = jsonReader.read();
-            this.feedingSchedule = notebook.getSavedSchedule();
-            this.feedLogList = notebook.getSavedLogList();
-            this.currentRecipe = notebook.getSavedRecipe();
-            this.ingredientSupply = notebook.getSavedSupplyList();
+            this.feedingSchedule = notebook.getFeedSchedule();
+            this.feedLogList = notebook.getLogList();
+            this.currentRecipe = notebook.getRecipe();
+            this.ingredientSupply = notebook.getSupplyList();
             System.out.println("Your notebook has been loaded");
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_PATH);

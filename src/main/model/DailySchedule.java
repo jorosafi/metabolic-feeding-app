@@ -3,10 +3,9 @@ package model;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
 
 //Creates data representation for a day-schedule of feeds consisting of an ArrayList of Feeds
 public class DailySchedule {
@@ -51,7 +50,8 @@ public class DailySchedule {
             Feed feed = new Feed(key, feedAmount);
             this.dailySchedule.add(feed);
         }
-        //TODO figure out why the schedule is constructed in an unordered manner
+
+        this.sortSchedule();
     }
 
     //MODIFIES: this
@@ -72,4 +72,40 @@ public class DailySchedule {
         return this.dailySchedule.get(index);
     }
 
+    //MODIFIES: This
+    //EFFECTS: Sorts schedule in ascending time order.
+    public void sortSchedule() {
+        this.dailySchedule.sort(Comparator.comparing(Feed::getTime));
+//        Date keyInDateFormat = dateFormat.parse(key);
+//        double feedAmount = savedSchedule.getDouble(key);
+//        Feed feed = new Feed(key, feedAmount);
+//
+//        if (this.dailySchedule.isEmpty()) {
+//            this.dailySchedule.add(feed);
+//        } else {
+//            for (Feed f : this.dailySchedule) {
+//                Date fDate = dateFormat.parse(f.getTime());
+//                int fIndex = this.dailySchedule.indexOf(f);
+//
+//                if (keyInDateFormat.before(fDate)) {
+//                    this.dailySchedule.add(fIndex, feed);
+//                }
+//            }
+//        }
+    }
+
+    //EFFECT: Returns feeding schedule as a JSONObject
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+
+
+        for (Feed feed : this.dailySchedule) {
+            String feedTime = feed.getTime();
+            Double feedAmount = feed.getAmount();
+
+            json.put(feedTime, feedAmount);
+        }
+
+        return json;
+    }
 }

@@ -1,9 +1,12 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.HashMap;
 
 //Creates data representation for a Recipe, consisting of HashMap of ingredients and amounts.
-public class Recipe {
+public class Recipe implements Writable {
     private double ivalex;
     private double enfamil;
     private double proPhree;
@@ -58,4 +61,17 @@ public class Recipe {
         return totalVolume;
     }
 
+    //EFFECT: returns recipe as a JSONObject
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+
+        json.put("ivalex", ivalex);
+        json.put("enfamil", enfamil);
+        json.put("proPhree", proPhree);
+        json.put("glycine", glycine);
+        json.put("breastMilk", breastMilk);
+        json.put("totalVolume", totalVolume);
+
+        return json;
+    }
 }
