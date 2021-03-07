@@ -16,7 +16,7 @@ import java.util.*;
 public class FeedingApp {
 
     private static final String BABY_NAME = "Santiago";
-    private static final String JSON_PATH = "./data/notebook.json";
+    private static final String JSON_PATH = "./data/emptyNotebook.json";
     private Notebook notebook;
     private Recipe currentRecipe;
     private LogList feedLogList;
@@ -147,7 +147,7 @@ public class FeedingApp {
 
     //MODIFIES: this
     //EFFECTS: Loads a notebook from a saved JSON and assigns Recipe, Schedule, LogList and SupplyList from notebook
-    private void loadSavedNotebook() {
+    public void loadSavedNotebook() {
         try {
             this.notebook = jsonReader.read();
             this.feedingSchedule = notebook.getFeedSchedule();

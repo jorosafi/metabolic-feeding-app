@@ -15,7 +15,8 @@ public class Notebook implements Writable {
     private JSONObject feedSchedule;
 
     //EFFECTS: Constructs Notebook from JSONObjects
-    public Notebook(JSONObject supplyList, JSONObject recipe, JSONObject schedule, JSONObject logs) {
+    public Notebook(JSONObject supplyList, JSONObject recipe,
+                    JSONObject schedule, JSONObject logs) {
         this.supplyList = supplyList;
         this.recipe = recipe;
         this.feedSchedule = schedule;

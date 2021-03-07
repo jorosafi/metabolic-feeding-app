@@ -44,10 +44,5 @@ public class JsonReader {
         JSONObject logList = jsonObject.getJSONObject("logList");
 
         return new Notebook(supplyList, currentRecipe, todayFeedingSchedule, logList);
-
-        //In the Json SerializationDemo, the Thingies are parsed here and new
-        //things are constructed and added to the list of Thingies in the workroom.
-        //Here I am instead just getting the unparsed data into the notebook, and
-        //parsing them into usable formats in the Notebook itself.
     }
 }
