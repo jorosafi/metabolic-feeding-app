@@ -34,9 +34,17 @@ public class DailySchedule {
         int nextTime = START_TIME;
 
         for (int i = numberOfFeeds; i > 0; i--) {
-            String timeString = todayFormatted + " - " + nextTime;
+            String timeString = todayFormatted + " - " + formatTime(nextTime);
             this.dailySchedule.add(new Feed(timeString, feedAmount));
             nextTime = nextTime + FEED_INTERVAL;
+        }
+    }
+
+    private String formatTime(int time) {
+        if (time < 10) {
+            return "0" + time;
+        } else {
+            return Integer.toString(time);
         }
     }
 
@@ -76,22 +84,6 @@ public class DailySchedule {
     //EFFECTS: Sorts schedule in ascending time order.
     public void sortSchedule() {
         this.dailySchedule.sort(Comparator.comparing(Feed::getTime));
-//        Date keyInDateFormat = dateFormat.parse(key);
-//        double feedAmount = savedSchedule.getDouble(key);
-//        Feed feed = new Feed(key, feedAmount);
-//
-//        if (this.dailySchedule.isEmpty()) {
-//            this.dailySchedule.add(feed);
-//        } else {
-//            for (Feed f : this.dailySchedule) {
-//                Date fDate = dateFormat.parse(f.getTime());
-//                int fIndex = this.dailySchedule.indexOf(f);
-//
-//                if (keyInDateFormat.before(fDate)) {
-//                    this.dailySchedule.add(fIndex, feed);
-//                }
-//            }
-//        }
     }
 
     //EFFECT: Returns feeding schedule as a JSONObject

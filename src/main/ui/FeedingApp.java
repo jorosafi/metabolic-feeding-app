@@ -66,7 +66,7 @@ public class FeedingApp {
             logFeed();
         } else if (command.equals("vr")) {
             viewRecipe();
-        } else if (command.equals("nr")) {
+        } else if (command.equals("ur")) {
             newRecipe();
         } else if (command.equals("es")) {
             estimateSupply();
@@ -76,10 +76,12 @@ public class FeedingApp {
             viewLog();
         } else if (command.equals("vs")) {
             viewSchedule();
-        } else if (command.equals("al")) {
+        } else if (command.equals("lo")) {
             addLogAmount();
         } else if (command.equals("sn")) {
             saveNotebook();
+        } else if (command.equals("cs")) {
+            createFeedingSchedule();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -105,16 +107,22 @@ public class FeedingApp {
     public void displayMenu() {
         System.out.println("\nWelcome to Santiago's Metabolic Feeding App.");
         System.out.println("\nWhat would you like to do today?");
-        System.out.println("\tln -> Load Notebook");
-        System.out.println("\tnr -> Create a New Recipe");
-        System.out.println("\tvr -> View the Recipe");
+        System.out.println("\tln -> Load a saved Notebook");
+
+        System.out.println("\n\tur -> Update Recipe");
+        System.out.println("\tvr -> View Recipe");
+
+        System.out.println("\n\tcs -> Create feeding schedule for today"); //TODO build command
         System.out.println("\tvs -> View the feeding schedule");
-        System.out.println("\tlf -> Log a feed");
+
+        System.out.println("\n\tlf -> Log a feed");
         System.out.println("\tvl -> View the feeding log");
-        System.out.println("\tal -> View how much " + BABY_NAME + " has left today so far");
-        System.out.println("\tai -> Add ingredients to the supply");
+        System.out.println("\tlo -> View how much " + BABY_NAME + " has left today"); //TODO change command to show only today
+
+        System.out.println("\n\tai -> Add ingredients to the supply");
         System.out.println("\tes -> Estimate how long the ingredient supply will last");
-        System.out.println("\tsn -> Save Notebook");
+
+        System.out.println("\n\tsn -> Save Notebook");
         System.out.println("\tq -> Close the App");
     }
 
@@ -168,16 +176,25 @@ public class FeedingApp {
 
         System.out.println("\nThank you for logging a feed. Would you like to log another feed?");
         System.out.println("\tlf -> Log another feed");
-        System.out.println("\tal -> View how much " + BABY_NAME + " has left today so far");
+        System.out.println("\tlo -> View how much " + BABY_NAME + " has left today so far");
         System.out.println("\tpress any key to return to the main menu");
 
         String nextCommand = input.next();
 
         if (nextCommand.equals("lf")) {
             logFeed();
-        } else if (nextCommand.equals("al")) {
+        } else if (nextCommand.equals("lo")) {
             addLogAmount();
         }
+    }
+
+    //MODIFIES: This
+    //EFFECTS: Creates new schedule for the day
+    private void createFeedingSchedule() {
+        this.feedingSchedule = new DailySchedule(currentRecipe);
+
+        System.out.println("\nThis is the feeding schedule for the day:");
+        viewSchedule();
     }
 
     //EFFECTS: prints out the feedingSchedule
@@ -189,7 +206,7 @@ public class FeedingApp {
 
         for (Feed f : schedule) {
             String time = f.getTime();
-            double amount = f.getAmount();
+            double amount = Math.round(f.getAmount());
             System.out.println(time + " - " + amount);
         }
 
@@ -246,12 +263,12 @@ public class FeedingApp {
         System.out.println("Fill with water to total volume of -> " + totalVolumeAmount + "ml");
 
         System.out.println("\nWould you like to create a new recipe or return to the main menu?");
-        System.out.println("\tnr -> Create a New Recipe");
+        System.out.println("\tur -> Update Recipe");
         System.out.println("\tpress any key to return to the main menu");
 
         String nextCommand = input.next();
 
-        if (nextCommand.equals("nr")) {
+        if (nextCommand.equals("ur")) {
             newRecipe();
         }
 

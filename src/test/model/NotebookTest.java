@@ -7,7 +7,7 @@ public class NotebookTest {
 
     @Test
     void notebookSupplyTest() {
-        //stub
+        //TODO crete tests for Notebook
     }
 
 }

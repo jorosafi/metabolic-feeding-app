@@ -65,7 +65,6 @@ public class Notebook implements Writable {
         LogList parsedLogList = new LogList();
         Set<String> keySet = logList.keySet();
 
-        //TODO log list returns out of order
         for (String key : keySet) {
             JSONArray amountArray = logList.getJSONArray(key);
             double feedAmount = amountArray.getDouble(0);

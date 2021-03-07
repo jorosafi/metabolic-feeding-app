@@ -5,8 +5,6 @@ import persistence.Writable;
 
 import java.util.HashMap;
 
-//TODO if time permits, create abstract Ingredients class for Recipe and Supplies
-
 //Creates data representation for the supply of medical ingredients. Creates HashMap that stores the name of the
 //  ingredient and the amount in stock.
 public class IngredientSupply implements Writable {
