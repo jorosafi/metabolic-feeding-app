@@ -1,5 +1,6 @@
 package model;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -85,5 +86,22 @@ public class LogListTest {
         testLogList.addLog(log5);
 
         assertEquals(100, testLogList.addAmountLeftInDay());
+    }
+
+    @Test
+    //EFFECTS: Test getLogList
+    public void getLogListTest() {
+        ArrayList<Log> logListArray =  testLogList.getLogList();
+
+        assertEquals(4, logListArray.size());
+    }
+
+    @Test
+    //EFFECTS: Test toJson
+    public void testToJson() {
+        JSONObject json = testLogList.toJson();
+
+        assertEquals(4, json.length());
+        assertEquals(10, json.getJSONArray(log3.getFeed().getTime()).getInt(1));
     }
 }

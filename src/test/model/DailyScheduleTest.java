@@ -1,5 +1,6 @@
 package model;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -52,5 +53,12 @@ class DailyScheduleTest {
     //EFFECTS: tests getDaily Schedule
     public void getDailyScheduleTest() {
         assertEquals(6, testSchedule.getDailySchedule().size());
+    }
+
+    @Test
+    //EFFECTS: Tests toJson
+    public void testToJson() {
+        JSONObject json = testSchedule.toJson();
+        assertEquals(6, json.length());
     }
 }

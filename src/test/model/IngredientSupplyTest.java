@@ -1,5 +1,6 @@
 package model;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -121,5 +122,14 @@ public class IngredientSupplyTest {
 
         assertEquals(totalEstimate, testSupplyList.estimateIngredientSupply(testRecipe));
 
+    }
+
+    @Test
+    //EFFECTS: test toJson
+    public void testToJson() {
+        JSONObject json = testSupplyList.toJson();
+
+        assertEquals(3, json.length());
+        assertEquals(800, json.getInt("proPhree"));
     }
 }

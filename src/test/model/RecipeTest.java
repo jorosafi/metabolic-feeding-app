@@ -1,5 +1,6 @@
 package model;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,6 +32,16 @@ public class RecipeTest {
         assertEquals(400, testRecipe.getBreastMilk());
         assertEquals(960, testRecipe.getVolume());
 
+    }
+
+    @Test
+    //EFFECTS: Checking toJson method
+    public void testToJson() {
+        testRecipe = new Recipe(40, 20,
+                15, 1.5, 350, 920);
+        JSONObject json = testRecipe.toJson();
+
+        assertEquals(6, json.length());
     }
 
 }

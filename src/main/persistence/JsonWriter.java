@@ -1,4 +1,5 @@
 package persistence;
+
 import model.Notebook;
 import org.json.JSONObject;
 

@@ -60,30 +60,52 @@ public class FeedingApp {
 
     //EFFECTS: redirects user commands to appropriate methods
     public void processCommand(String command) {
-        if (command.equals("ln")) {
-            loadSavedNotebook();
-        } else if (command.equals("lf")) {
-            logFeed();
-        } else if (command.equals("vr")) {
-            viewRecipe();
-        } else if (command.equals("ur")) {
-            newRecipe();
-        } else if (command.equals("es")) {
-            estimateSupply();
-        } else if (command.equals("ai")) {
-            addSupply();
-        } else if (command.equals("vl")) {
-            viewLog();
-        } else if (command.equals("vs")) {
-            viewSchedule();
-        } else if (command.equals("lo")) {
-            addLogAmount();
-        } else if (command.equals("sn")) {
-            saveNotebook();
-        } else if (command.equals("cs")) {
-            createFeedingSchedule();
-        } else {
-            System.out.println("Selection not valid...");
+        switch (command) {
+            case "ln":
+                loadSavedNotebook();
+                break;
+            case "lf":
+                logFeed();
+                break;
+            case "vr":
+                viewRecipe();
+                break;
+            case "ur":
+                newRecipe();
+                break;
+            case "es":
+                estimateSupply();
+                break;
+            case "ai":
+                addSupply();
+                break;
+            default:
+                moreCommands(command);
+                break;
+        }
+    }
+
+    //EFFECTS: helper function for processCommand to run more commands
+    private void moreCommands(String command) {
+        switch (command) {
+            case "vl":
+                viewLog();
+                break;
+            case "vs":
+                viewSchedule();
+                break;
+            case "lo":
+                addLogAmount();
+                break;
+            case "sn":
+                saveNotebook();
+                break;
+            case "cs":
+                createFeedingSchedule();
+                break;
+            default:
+                System.out.println("Selection not valid...");
+                break;
         }
     }
 
@@ -112,12 +134,13 @@ public class FeedingApp {
         System.out.println("\n\tur -> Update Recipe");
         System.out.println("\tvr -> View Recipe");
 
-        System.out.println("\n\tcs -> Create feeding schedule for today"); //TODO build command
+        System.out.println("\n\tcs -> Create feeding schedule for today");
         System.out.println("\tvs -> View the feeding schedule");
 
         System.out.println("\n\tlf -> Log a feed");
         System.out.println("\tvl -> View the feeding log");
-        System.out.println("\tlo -> View how much " + BABY_NAME + " has left today"); //TODO change command to show only today
+        System.out.println("\tlo -> View how much " + BABY_NAME + " has left today");
+        //TODO change command to show only today
 
         System.out.println("\n\tai -> Add ingredients to the supply");
         System.out.println("\tes -> Estimate how long the ingredient supply will last");
