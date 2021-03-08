@@ -1,0 +1,27 @@
+{
+    "currentRecipe": {
+        "totalVolume": 600,
+        "proPhree": 50,
+        "ivalex": 50,
+        "glycine": 50,
+        "breastMilk": 500,
+        "enfamil": 50
+    },
+    "todayFeedingSchedule": {
+        "21.03.07 - 10": 100,
+        "21.03.07 - 02": 100,
+        "21.03.07 - 14": 100,
+        "21.03.07 - 22": 100,
+        "21.03.07 - 06": 100,
+        "21.03.07 - 18": 100
+    },
+    "supplyList": {
+        "proPhree": 500,
+        "ivalex": 500,
+        "glycine": 500
+    },
+    "logList": {"21.03.07 - 02": [
+        100,
+        50
+    ]}
+}

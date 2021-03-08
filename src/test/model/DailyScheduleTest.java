@@ -28,8 +28,8 @@ class DailyScheduleTest {
     @Test
     //EFFECTS: tests the dailySchedule constructor
     public void constructorTest() {
-        assertEquals("" + todayFormatted + " - 2", testSchedule.getFeedByIndex(0).getTime());
-        assertEquals("" + todayFormatted + " - 6", testSchedule.getFeedByIndex(1).getTime());
+        assertEquals("" + todayFormatted + " - 02", testSchedule.getFeedByIndex(0).getTime());
+        assertEquals("" + todayFormatted + " - 06", testSchedule.getFeedByIndex(1).getTime());
         assertEquals("" + todayFormatted + " - 10", testSchedule.getFeedByIndex(2).getTime());
         assertEquals("" + todayFormatted + " - 14", testSchedule.getFeedByIndex(3).getTime());
         assertEquals("" + todayFormatted + " - 18", testSchedule.getFeedByIndex(4).getTime());
@@ -39,10 +39,10 @@ class DailyScheduleTest {
     @Test
     //EFFECTS tests that the removeFeed method properly removes Feeds from the dailySchedule
     public void removeFeedTest() {
-        assertEquals("" + todayFormatted + " - 2", testSchedule.getFeedByIndex(0).getTime());
+        assertEquals("" + todayFormatted + " - 02", testSchedule.getFeedByIndex(0).getTime());
 
         testSchedule.removeFirstFeed();
-        assertEquals("" + todayFormatted + " - 6", testSchedule.getFeedByIndex(0).getTime());
+        assertEquals("" + todayFormatted + " - 06", testSchedule.getFeedByIndex(0).getTime());
 
         testSchedule.removeFirstFeed();
         assertEquals("" + todayFormatted + " - 10", testSchedule.getFeedByIndex(0).getTime());

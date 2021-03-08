@@ -60,7 +60,7 @@ public class LogListTest {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yy.MM.dd");
         String todayFormatted = "" + dateFormat.format(today) + "";
 
-        Log sixAMFeed = testLogList.getLogByFeed(todayFormatted + " - 6");
+        Log sixAMFeed = testLogList.getLogByFeed(todayFormatted + " - 06");
         assertEquals(log2, sixAMFeed);
 
         Log twoPMFeed = testLogList.getLogByFeed(todayFormatted + " - 14");
