@@ -16,7 +16,7 @@ import java.util.*;
 public class FeedingApp {
 
     private static final String BABY_NAME = "Santiago";
-    private static final String JSON_PATH = "./data/emptyNotebook.json";
+    private static final String JSON_PATH = "./data/notebook.json";
     private Notebook notebook;
     private Recipe currentRecipe;
     private LogList feedLogList;
