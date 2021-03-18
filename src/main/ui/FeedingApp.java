@@ -4,9 +4,9 @@ import model.*;
 import org.json.JSONObject;
 import persistence.JsonReader;
 import persistence.JsonWriter;
+import ui.graphics.BasicScreen;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
@@ -26,7 +26,7 @@ public class FeedingApp extends JFrame {
     private IngredientSupply ingredientSupply;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
-    private Graphics window;
+    private BasicScreen window;
 
 
 
@@ -117,7 +117,7 @@ public class FeedingApp extends JFrame {
     //MODIFIES: this
     //EFFECTS: initializes default Recipe, DailySchedule, Ingredient Supply, log list, and Scanner input
     public void init() {
-        window = new Graphics();
+        window = new BasicScreen();
         currentRecipe = new Recipe(1, 1,
                 1, 1, 1, 1000);
         feedingSchedule = new DailySchedule(currentRecipe);
@@ -128,8 +128,6 @@ public class FeedingApp extends JFrame {
 
         jsonWriter = new JsonWriter(JSON_PATH);
         jsonReader = new JsonReader(JSON_PATH);
-
-        window.initializeGraphics();
     }
 
 
