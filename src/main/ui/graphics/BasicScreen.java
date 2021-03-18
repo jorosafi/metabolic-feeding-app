@@ -4,15 +4,18 @@ import javax.swing.*;
 import java.awt.*;
 
 //Creates basic frame that will house all app screens
-public class BasicScreen extends JFrame {
+public abstract class BasicScreen extends JFrame {
     public static final int WIDTH = 450;
     public static final int HEIGHT = 800;
-    public static final int DARK_BLUE = 0x0b1c48;
-    public static final int MID_BLUE = 0x265b8b;
-    public static final int LIGHT_BLUE = 0x84c7f2;
-    public static final int IVORY = 0xececeb;
+    public static final Color DARK_BLUE = new Color(0x0b1c48);
+    public static final Color MID_BLUE = new Color(0x265b8b);
+    public static final Color LIGHT_BLUE = new Color(0x84c7f2);
+    public static final Color IVORY = new Color(0xececeb);
     private JFrame frame;
     private final String logoPath = "./images/rs-small.png";
+    protected JPanel titlePanel = new JPanel();
+    protected JLabel title = new JLabel();
+    protected JPanel bodyPanel = new JPanel();
 
 
     //EFFECTS: Constructor creates window that will house basic gui for app
@@ -24,7 +27,7 @@ public class BasicScreen extends JFrame {
         frame.setResizable(false);
         frame.setLayout(null);
 
-        frame.getContentPane().setBackground(new Color(DARK_BLUE));
+        frame.getContentPane().setBackground(DARK_BLUE);
 
         setHeader();
         setPageTitle();
@@ -41,13 +44,12 @@ public class BasicScreen extends JFrame {
 
         headerPanel.setBounds(0,0,WIDTH, 140);
 
-        headerPanel.setBackground(Color.red);
-        //headerPanel.setLayout(null);
+        headerPanel.setBackground(DARK_BLUE);
 
         headerLogo.setIcon(logo);
         headerLogo.setVerticalAlignment(JLabel.CENTER);
         headerLogo.setHorizontalAlignment(JLabel.CENTER);
-        headerLogo.setForeground(new Color(0xececeb));
+        headerLogo.setForeground(IVORY);
 
         headerPanel.add(headerLogo);
         frame.add(headerPanel);
@@ -58,18 +60,14 @@ public class BasicScreen extends JFrame {
     //MODIFIES: This
     //EFFECTS: Creates Title Panel for Basic Screen
     public void setPageTitle() {
-        JPanel titlePanel = new JPanel();
-        JLabel title = new JLabel();
 
         titlePanel.setBounds(0, 140,WIDTH, 220);
-        titlePanel.setBackground(Color.BLUE);
+        titlePanel.setBackground(DARK_BLUE);
 
-        title.setText("Santiago's Metabolic Feeding App!");
         title.setVerticalAlignment(JLabel.CENTER);
         title.setHorizontalAlignment(JLabel.CENTER);
         title.setLayout(new FlowLayout());
-        title.setForeground(new Color(IVORY));
-        title.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 40));
+        title.setForeground(IVORY);
 
         titlePanel.add(title);
         frame.add(titlePanel);
@@ -78,8 +76,16 @@ public class BasicScreen extends JFrame {
         titlePanel.setVisible(true);
     }
 
-    private void setBody() {
-        //TODO
+    public void setBody() {
+        BoxLayout layout = new BoxLayout(bodyPanel,BoxLayout.Y_AXIS);
+
+        bodyPanel.setBounds(0, 360, WIDTH, 440);
+        bodyPanel.setBackground(DARK_BLUE);
+        bodyPanel.setLayout(layout);
+
+        frame.add(bodyPanel);
+
+        bodyPanel.setVisible(true);
     }
 
 

@@ -5,6 +5,7 @@ import org.json.JSONObject;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 import ui.graphics.BasicScreen;
+import ui.graphics.HomeScreen;
 
 import javax.swing.*;
 import java.io.FileNotFoundException;
@@ -117,7 +118,7 @@ public class FeedingApp extends JFrame {
     //MODIFIES: this
     //EFFECTS: initializes default Recipe, DailySchedule, Ingredient Supply, log list, and Scanner input
     public void init() {
-        window = new BasicScreen();
+        window = new HomeScreen();
         currentRecipe = new Recipe(1, 1,
                 1, 1, 1, 1000);
         feedingSchedule = new DailySchedule(currentRecipe);
