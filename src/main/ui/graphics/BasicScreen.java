@@ -20,10 +20,13 @@ public abstract class BasicScreen extends JFrame implements ActionListener {
     protected JLabel title = new JLabel();
     protected JPanel bodyPanel = new JPanel();
     protected JPanel headerPanel = new JPanel();
+    protected FeedingApp feedingApp;
 
 
     //EFFECTS: Constructor creates window that will house basic gui for app
-    public BasicScreen() {
+    public BasicScreen(FeedingApp feedingApp) {
+
+        this.feedingApp = feedingApp;
 
         frame = new JFrame();
         frame.setTitle("Santiago's Feeding App");

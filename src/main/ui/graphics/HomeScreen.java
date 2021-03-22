@@ -1,5 +1,6 @@
 package ui.graphics;
 
+import model.Recipe;
 import ui.FeedingApp;
 
 import javax.swing.*;
@@ -8,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class HomeScreen extends BasicScreen implements ActionListener {
-    FeedingApp feedingApp;
 
     JButton recipeButton;
     JButton scheduleButton;
@@ -22,7 +22,7 @@ public class HomeScreen extends BasicScreen implements ActionListener {
     SupplyScreen supplyScreen;
 
     public HomeScreen(FeedingApp feedingApp) {
-        super();
+        super(feedingApp);
     }
 
     @Override
@@ -41,6 +41,8 @@ public class HomeScreen extends BasicScreen implements ActionListener {
         addButton("Feed Log", logButton);
         addButton("Ingredient Supply", supplyButton);
         addButton("Save & Exit", saveButton);
+
+
     }
 
     @Override
@@ -59,6 +61,7 @@ public class HomeScreen extends BasicScreen implements ActionListener {
             supplyScreen = new SupplyScreen(feedingApp);
         } else {
             System.out.println("save");
+
         }
     }
 }

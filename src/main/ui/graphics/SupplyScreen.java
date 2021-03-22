@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 public class SupplyScreen extends UtilityScreen {
 
     JButton updateSupplyButton;
-    FeedingApp feedingApp;
 
     public SupplyScreen(FeedingApp feedingApp) {
         super(feedingApp);

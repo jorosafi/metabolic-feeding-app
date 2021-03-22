@@ -7,13 +7,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public abstract class UtilityScreen extends BasicScreen {
-    FeedingApp feedingApp;
     JEditorPane dashboard;
     JButton mainMenu;
     HomeScreen homeScreen;
 
     public UtilityScreen(FeedingApp feedingApp) {
-        super();
+        super(feedingApp);
     }
 
 
@@ -47,7 +46,7 @@ public abstract class UtilityScreen extends BasicScreen {
     public void actionPerformed(ActionEvent e) {
         if ("Main Menu".equals(e.getActionCommand())) {
             frame.dispose();
-            homeScreen = new HomeScreen(feedingApp);
+            homeScreen = new HomeScreen(this.feedingApp);
         }
     }
 }

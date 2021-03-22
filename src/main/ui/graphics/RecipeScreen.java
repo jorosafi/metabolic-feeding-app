@@ -1,5 +1,6 @@
 package ui.graphics;
 
+import model.Recipe;
 import ui.FeedingApp;
 
 import javax.swing.*;
@@ -7,7 +8,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class RecipeScreen extends UtilityScreen {
-    FeedingApp feedingApp;
     JButton updateRecipeButton;
 
     public RecipeScreen(FeedingApp feedingApp) {
@@ -23,6 +23,17 @@ public class RecipeScreen extends UtilityScreen {
     @Override
     public void setBody() {
         super.setBody();
+
+        Recipe currentRecipe = feedingApp.getCurrentRecipe();
+
+        dashboard.setText("<html><ul>\n"
+                + "<li>Ivalex: " + currentRecipe.getIvalex() + "</li>"
+                + "<li>Enfamil: " + currentRecipe.getEnfamil() + "</li>"
+                + "<li>Pro-Phree: " + currentRecipe.getProPhree() + "</li>"
+                + "<li>Glycine: " + currentRecipe.getGlycine() + "</li>"
+                + "<li>Breast Milk: " + currentRecipe.getBreastMilk() + "</li>"
+                + "<li>Total Volume: " + currentRecipe.getVolume() + "</li>"
+                + "</ul></html>");
 
         addButton("Update Recipe", updateRecipeButton);
     }

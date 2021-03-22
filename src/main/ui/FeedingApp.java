@@ -6,10 +6,7 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 import ui.graphics.BasicScreen;
 import ui.graphics.HomeScreen;
-import ui.graphics.RecipeScreen;
-import ui.graphics.UtilityScreen;
 
-import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
@@ -120,7 +117,6 @@ public class FeedingApp {
     //MODIFIES: this
     //EFFECTS: initializes default Recipe, DailySchedule, Ingredient Supply, log list, and Scanner input
     public void init() {
-        window = new HomeScreen(this); //add feeding app as parameter?
         currentRecipe = new Recipe(1, 1,
                 1, 1, 1, 1000);
         feedingSchedule = new DailySchedule(currentRecipe);
@@ -131,6 +127,8 @@ public class FeedingApp {
 
         jsonWriter = new JsonWriter(JSON_PATH);
         jsonReader = new JsonReader(JSON_PATH);
+
+        window = new HomeScreen(this);
     }
 
 
@@ -405,4 +403,23 @@ public class FeedingApp {
         System.out.println("\n" + BABY_NAME + " has failed to drink " + amountLeftInDay + "ml so far today");
     }
 
+    public Notebook getNotebook() {
+        return notebook;
+    }
+
+    public Recipe getCurrentRecipe() {
+        return currentRecipe;
+    }
+
+    public LogList getFeedLogList() {
+        return feedLogList;
+    }
+
+    public DailySchedule getFeedingSchedule() {
+        return feedingSchedule;
+    }
+
+    public IngredientSupply getIngredientSupply() {
+        return ingredientSupply;
+    }
 }

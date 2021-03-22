@@ -1,5 +1,9 @@
 package ui;
 
+import ui.graphics.BasicScreen;
+import ui.graphics.HomeScreen;
+
+import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
 
