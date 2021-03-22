@@ -6,6 +6,8 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 import ui.graphics.BasicScreen;
 import ui.graphics.HomeScreen;
+import ui.graphics.RecipeScreen;
+import ui.graphics.UtilityScreen;
 
 import javax.swing.*;
 import java.io.FileNotFoundException;
@@ -16,7 +18,7 @@ import java.util.*;
 //The functionality of this class is largely based off the course's TellerApp
 // ui: https://github.students.cs.ubc.ca/CPSC210/TellerApp.
 // Many of the methods were taken from the TellerApp class and modified for the purpose of this app.
-public class FeedingApp extends JFrame {
+public class FeedingApp {
 
     private static final String BABY_NAME = "Santiago";
     private static final String JSON_PATH = "./data/notebook.json";
@@ -118,7 +120,7 @@ public class FeedingApp extends JFrame {
     //MODIFIES: this
     //EFFECTS: initializes default Recipe, DailySchedule, Ingredient Supply, log list, and Scanner input
     public void init() {
-        window = new HomeScreen();
+        window = new HomeScreen(this); //add feeding app as parameter?
         currentRecipe = new Recipe(1, 1,
                 1, 1, 1, 1000);
         feedingSchedule = new DailySchedule(currentRecipe);

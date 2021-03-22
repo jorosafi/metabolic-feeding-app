@@ -1,11 +1,27 @@
 package ui.graphics;
 
+import ui.FeedingApp;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class HomeScreen extends BasicScreen {
+public class HomeScreen extends BasicScreen implements ActionListener {
+    FeedingApp feedingApp;
 
-    public HomeScreen() {
+    JButton recipeButton;
+    JButton scheduleButton;
+    JButton logButton;
+    JButton supplyButton;
+    JButton saveButton;
+
+    RecipeScreen recipeScreen;
+    FeedingScheduleScreen feedingScheduleScreen;
+    LogScreen logScreen;
+    SupplyScreen supplyScreen;
+
+    public HomeScreen(FeedingApp feedingApp) {
         super();
     }
 
@@ -20,21 +36,29 @@ public class HomeScreen extends BasicScreen {
     public void setBody() {
         super.setBody();
 
-        addButton("Recipe");
-        addButton("Schedule");
-        addButton("Feed Log");
-        addButton("Ingredient Supply");
-        addButton("Save & Exit");
+        addButton("Recipe", recipeButton);
+        addButton("Schedule", scheduleButton);
+        addButton("Feed Log", logButton);
+        addButton("Ingredient Supply", supplyButton);
+        addButton("Save & Exit", saveButton);
     }
 
-    public void addButton(String buttonName) {
-        JButton button = new JButton(buttonName);
-
-        button.setBackground(LIGHT_BLUE);
-        button.setForeground(DARK_BLUE);
-        button.setMinimumSize(new Dimension(260, 65)); //not working for some reason TODO
-        button.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        bodyPanel.add(button);
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if ("Recipe".equals(e.getActionCommand())) {
+            frame.dispose();
+            recipeScreen = new RecipeScreen(feedingApp);
+        } else if ("Feed Log".equals(e.getActionCommand())) {
+            frame.dispose();
+            logScreen = new LogScreen(feedingApp);
+        } else if ("Schedule".equals(e.getActionCommand())) {
+            frame.dispose();
+            feedingScheduleScreen = new FeedingScheduleScreen(feedingApp);
+        } else if ("Ingredient Supply".equals(e.getActionCommand())) {
+            frame.dispose();
+            supplyScreen = new SupplyScreen(feedingApp);
+        } else {
+            System.out.println("save");
+        }
     }
 }
