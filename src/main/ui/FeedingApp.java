@@ -6,6 +6,7 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 import ui.graphics.BasicScreen;
 import ui.graphics.HomeScreen;
+import ui.graphics.LoadScreen;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -19,6 +20,7 @@ public class FeedingApp {
 
     private static final String BABY_NAME = "Santiago";
     private static final String JSON_PATH = "./data/notebook.json";
+    private Boolean keepGoing = true;
     private Notebook notebook;
     private Recipe currentRecipe;
     private LogList feedLogList;
@@ -42,9 +44,7 @@ public class FeedingApp {
     // MODIFIES: this
     // EFFECTS: processes user input
     public void runFeedingApp() {
-        boolean keepGoing = true;
         String command;
-
         init();
 
         while (keepGoing) {
@@ -128,7 +128,7 @@ public class FeedingApp {
         jsonWriter = new JsonWriter(JSON_PATH);
         jsonReader = new JsonReader(JSON_PATH);
 
-        window = new HomeScreen(this);
+        window = new LoadScreen(this);
     }
 
 
@@ -157,7 +157,7 @@ public class FeedingApp {
     }
 
     //EFFECTS: saves current notebook to a JSON file
-    private void saveNotebook() {
+    public void saveNotebook() {
         JSONObject supplyListToSave = this.ingredientSupply.toJson();
         JSONObject recipeToSave = this.currentRecipe.toJson();
         JSONObject feedingScheduleToSave = this.feedingSchedule.toJson();
@@ -220,7 +220,7 @@ public class FeedingApp {
 
     //MODIFIES: This
     //EFFECTS: Creates new schedule for the day
-    private void createFeedingSchedule() {
+    public void createFeedingSchedule() {
         this.feedingSchedule = new DailySchedule(currentRecipe);
 
         System.out.println("\nThis is the feeding schedule for the day:");
@@ -228,7 +228,7 @@ public class FeedingApp {
     }
 
     //EFFECTS: prints out the feedingSchedule
-    private void viewSchedule() {
+    public void viewSchedule() {
         System.out.println("\n" + BABY_NAME + " has to eat at the following times today:");
         System.out.println("\t Time(24hr) - Amount(ml)");
 
@@ -252,7 +252,7 @@ public class FeedingApp {
     }
 
     //EFFECTS: Prints out hte feedLogList
-    private void viewLog() {
+    public void viewLog() {
         System.out.println("\nThese are " + BABY_NAME + "'s latest feeds:");
         System.out.println("\t Date and Time(24hr) | Size of Feed(ml) | Amount Left(ml)");
 
@@ -349,7 +349,7 @@ public class FeedingApp {
     }
 
     //EFFECTS: Estimates how long current supply of medical ingredients will last if using currentRecipe
-    private void estimateSupply() {
+    public void estimateSupply() {
 
         HashMap<String, Double> supplyEstimate = ingredientSupply.estimateIngredientSupply(currentRecipe);
 
@@ -373,7 +373,7 @@ public class FeedingApp {
 
     //MODIFIES: ingredientSupply
     //EFFECTS: Allows user to add I-valex, Pro Phree and Glycine to the ingredientSupply
-    private void addSupply() {
+    public void addSupply() {
         System.out.println("Enter the amount you would like to add for each Ingredient:");
         System.out.println("I-valex - enter amount in grams");
         double ivalexAmount = input.nextDouble();
@@ -398,7 +398,7 @@ public class FeedingApp {
     }
 
     //EFFECTS: adds up the amount of food leftover in logList. Log currently only supports one day.
-    private void addLogAmount() {
+    public void addLogAmount() {
         int amountLeftInDay = feedLogList.addAmountLeftInDay();
         System.out.println("\n" + BABY_NAME + " has failed to drink " + amountLeftInDay + "ml so far today");
     }
@@ -421,5 +421,9 @@ public class FeedingApp {
 
     public IngredientSupply getIngredientSupply() {
         return ingredientSupply;
+    }
+
+    public void setKeepGoingToFalse() {
+        keepGoing = false;
     }
 }

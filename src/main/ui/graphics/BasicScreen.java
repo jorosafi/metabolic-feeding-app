@@ -5,6 +5,8 @@ import ui.FeedingApp;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 //Creates basic frame that will house all app screens
 public abstract class BasicScreen extends JFrame implements ActionListener {
@@ -30,8 +32,28 @@ public abstract class BasicScreen extends JFrame implements ActionListener {
 
         frame = new JFrame();
         frame.setTitle("Santiago's Feeding App");
-        frame.setSize(WIDTH,HEIGHT);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(WIDTH, HEIGHT);
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int userDialogueResponse = JOptionPane.showConfirmDialog(null,
+                        "Would you like to save before quitting?",
+                        "Exit",
+                        JOptionPane.YES_NO_OPTION);
+
+                System.out.println(userDialogueResponse);
+
+                if (userDialogueResponse == 1) {
+                    System.exit(0);
+                } else if (userDialogueResponse == 0) {
+                    feedingApp.saveNotebook();
+                    JOptionPane.showMessageDialog(null,
+                            "Your Notebook has been saved.");
+                    System.exit(0);
+                }
+            }
+        });
         //frame.setResizable(false);
         frame.setLayout(null);
 
@@ -49,7 +71,7 @@ public abstract class BasicScreen extends JFrame implements ActionListener {
         ImageIcon logo = new ImageIcon(logoPath);
         JLabel headerLogo = new JLabel();
 
-        headerPanel.setBounds(0,0,WIDTH, 140);
+        headerPanel.setBounds(0, 0, WIDTH, 140);
         headerPanel.setBackground(DARK_BLUE);
 
         headerLogo.setIcon(logo);
@@ -74,6 +96,8 @@ public abstract class BasicScreen extends JFrame implements ActionListener {
         title.setHorizontalAlignment(JLabel.CENTER);
         title.setLayout(new FlowLayout());
         title.setForeground(IVORY);
+        title.setText("<HTML><H1>Santiago's Metabolic Feeding App</H1>");
+        title.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 30));
 
         titlePanel.add(title);
         frame.add(titlePanel);
@@ -84,7 +108,7 @@ public abstract class BasicScreen extends JFrame implements ActionListener {
 
     public void setBody() {
         GridLayout gridLayout = new GridLayout(5, 1, 40, 20);
-        BoxLayout boxLayout = new BoxLayout(bodyPanel,BoxLayout.Y_AXIS);
+        BoxLayout boxLayout = new BoxLayout(bodyPanel, BoxLayout.Y_AXIS);
 
         bodyPanel.setBounds(0, 360, WIDTH, 380);
         bodyPanel.setBackground(DARK_BLUE);

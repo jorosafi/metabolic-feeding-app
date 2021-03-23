@@ -13,9 +13,9 @@
         "21.03.09 - 22": 146.66666666666666
     },
     "supplyList": {
-        "proPhree": -63,
-        "ivalex": -39,
-        "glycine": -63
+        "proPhree": 600,
+        "ivalex": 800,
+        "glycine": 50
     },
     "logList": {
         "21.03.09 - 06": [

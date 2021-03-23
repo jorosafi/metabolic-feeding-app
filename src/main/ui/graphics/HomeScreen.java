@@ -25,12 +25,6 @@ public class HomeScreen extends BasicScreen implements ActionListener {
         super(feedingApp);
     }
 
-    @Override
-    public void setPageTitle() {
-        super.setPageTitle();
-        title.setText("<HTML><H1>Santiago's Metabolic Feeding App</H1>");
-        title.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 40));
-    }
 
     @Override
     public void setBody() {
@@ -60,8 +54,21 @@ public class HomeScreen extends BasicScreen implements ActionListener {
             frame.dispose();
             supplyScreen = new SupplyScreen(feedingApp);
         } else {
-            System.out.println("save");
+            saveAndClose();
+        }
+    }
 
+    public void saveAndClose() {
+        feedingApp.saveNotebook();
+        int userDialogueResponse = JOptionPane.showConfirmDialog(null,
+                "Your Notebook has been saved. Would you like to Exit?",
+                "Notebook Saved",
+                JOptionPane.YES_NO_OPTION);
+
+        if (userDialogueResponse == 0) {
+            feedingApp.setKeepGoingToFalse();
+            frame.dispose();
+            System.exit(0);
         }
     }
 }

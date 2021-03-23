@@ -21,21 +21,28 @@ public class LogScreen extends UtilityScreen {
     @Override
     public void setBody() {
         super.setBody();
+
+        String logString = logToString();
+
+        dashboard.setText(logString);
+    }
+
+    private String logToString() {
         LogList logList = feedingApp.getFeedLogList();
-        String logString = "<html><ul>";
+        String logString = "<html><p>   Date   - Time - Feed Amount - Amound Left</p><ul>";
 
         for (int i = 0; i < 6; i++) {
             if (i < logList.logListSize()) {
                 Log log = logList.getLogByIndex(i);
                 logString = logString + "<li>" + log.getFeed().getTime() + " - "
-                        + log.getFeed().getAmount() + " - "
+                        + Math.round(log.getFeed().getAmount()) + " - "
                         + log.getAmount() + "</li>";
             }
         }
 
         logString = logString + "</ul></html>";
 
-        dashboard.setText(logString);
+        return  logString;
     }
 
 

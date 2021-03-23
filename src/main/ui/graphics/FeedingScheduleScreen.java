@@ -1,14 +1,15 @@
 package ui.graphics;
 
+import model.Feed;
 import ui.FeedingApp;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 public class FeedingScheduleScreen extends UtilityScreen {
     JButton editScheduleButton;
     JButton createScheduleButton;
-    FeedingApp feedingApp;
 
     public FeedingScheduleScreen(FeedingApp feedingApp) {
         super(feedingApp);
@@ -24,8 +25,26 @@ public class FeedingScheduleScreen extends UtilityScreen {
     public void setBody() {
         super.setBody();
 
+        String scheduleString = scheduleToString();
+
+        dashboard.setText(scheduleString);
+
         addButton("Edit Schedule", editScheduleButton);
         addButton("Create Schedule", createScheduleButton);
+    }
+
+    public String scheduleToString() {
+        ArrayList<Feed> schedule = feedingApp.getFeedingSchedule().getDailySchedule();
+        String scheduleString = "<html><p>   Date   - Time - Feed Amount</p><ul>";
+
+        for (Feed feed : schedule) {
+            scheduleString = scheduleString + "<li>" + feed.getTime() + " - "
+                    + Math.round(feed.getAmount()) + "</li>";
+
+        }
+        scheduleString = scheduleString + "</ul></html>";
+
+        return scheduleString;
     }
 
     @Override
