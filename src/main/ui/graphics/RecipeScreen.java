@@ -26,7 +26,7 @@ public class RecipeScreen extends UtilityScreen {
 
         Recipe currentRecipe = feedingApp.getCurrentRecipe();
 
-        dashboard.setText("<html><ul>\n"
+        infoPanel.setText("<html><ul>\n"
                 + "<li>Ivalex: " + currentRecipe.getIvalex() + "</li>"
                 + "<li>Enfamil: " + currentRecipe.getEnfamil() + "</li>"
                 + "<li>Pro-Phree: " + currentRecipe.getProPhree() + "</li>"

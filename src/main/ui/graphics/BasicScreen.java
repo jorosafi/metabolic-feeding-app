@@ -3,6 +3,7 @@ package ui.graphics;
 import ui.FeedingApp;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -22,7 +23,9 @@ public abstract class BasicScreen extends JFrame implements ActionListener {
     protected JLabel title = new JLabel();
     protected JPanel bodyPanel = new JPanel();
     protected JPanel headerPanel = new JPanel();
+    protected JPanel buttonPanel = new JPanel();
     protected FeedingApp feedingApp;
+
 
 
     //EFFECTS: Constructor creates window that will house basic gui for app
@@ -34,6 +37,23 @@ public abstract class BasicScreen extends JFrame implements ActionListener {
         frame.setTitle("Santiago's Feeding App");
         frame.setSize(WIDTH, HEIGHT);
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        setConfirmBeforeClosingDialogue(feedingApp);
+
+        //frame.setResizable(false);
+        frame.setLayout(new BoxLayout(frame.getContentPane(),BoxLayout.Y_AXIS));
+        frame.setBackground(Color.white);
+        frame.setIconImage(new ImageIcon(logoPath).getImage());
+
+        frame.getContentPane().setBackground(Color.red);
+        frame.getContentPane().setSize(new Dimension(WIDTH, HEIGHT));
+
+        setHeader();
+        setPageTitle();
+        setBody();
+        frame.setVisible(true);
+    }
+
+    private void setConfirmBeforeClosingDialogue(FeedingApp feedingApp) {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -54,15 +74,6 @@ public abstract class BasicScreen extends JFrame implements ActionListener {
                 }
             }
         });
-        //frame.setResizable(false);
-        frame.setLayout(null);
-
-        frame.getContentPane().setBackground(DARK_BLUE);
-
-        setHeader();
-        setPageTitle();
-        setBody();
-        frame.setVisible(true);
     }
 
     //MODIFIES: This (frame)
@@ -71,8 +82,10 @@ public abstract class BasicScreen extends JFrame implements ActionListener {
         ImageIcon logo = new ImageIcon(logoPath);
         JLabel headerLogo = new JLabel();
 
-        headerPanel.setBounds(0, 0, WIDTH, 140);
-        headerPanel.setBackground(DARK_BLUE);
+        //headerPanel.setBounds(0, 0, WIDTH, 120);
+        headerPanel.setPreferredSize(new Dimension(WIDTH, 110));
+        headerPanel.setBackground(Color.DARK_GRAY);
+        headerPanel.setLayout(new GridLayout(1, 1, 0, 0));
 
         headerLogo.setIcon(logo);
         headerLogo.setVerticalAlignment(JLabel.CENTER);
@@ -89,14 +102,17 @@ public abstract class BasicScreen extends JFrame implements ActionListener {
     //EFFECTS: Creates Title Panel for Basic Screen
     public void setPageTitle() {
 
-        titlePanel.setBounds(0, 140, WIDTH, 220);
-        titlePanel.setBackground(DARK_BLUE);
+        //titlePanel.setBounds(0, 120, WIDTH, 220);
+        titlePanel.setPreferredSize(new Dimension(WIDTH, 220));
+        titlePanel.setBackground(Color.PINK);
+        titlePanel.setLayout(new GridLayout(1,1,0,0));
 
         title.setVerticalAlignment(JLabel.CENTER);
         title.setHorizontalAlignment(JLabel.CENTER);
         title.setLayout(new FlowLayout());
         title.setForeground(IVORY);
         title.setText("<HTML><H1>Santiago's Metabolic Feeding App</H1>");
+        title.setHorizontalTextPosition(JLabel.CENTER);
         title.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 30));
 
         titlePanel.add(title);
@@ -107,19 +123,27 @@ public abstract class BasicScreen extends JFrame implements ActionListener {
     }
 
     public void setBody() {
-        GridLayout gridLayout = new GridLayout(5, 1, 40, 20);
-        BoxLayout boxLayout = new BoxLayout(bodyPanel, BoxLayout.Y_AXIS);
+//        GridLayout gridLayout = new GridLayout(5, 1, 40, 20);
+//        BoxLayout boxLayout = new BoxLayout(bodyPanel, BoxLayout.Y_AXIS);
 
-        bodyPanel.setBounds(0, 360, WIDTH, 380);
-        bodyPanel.setBackground(DARK_BLUE);
-        bodyPanel.setLayout(gridLayout);
+        //bodyPanel.setBounds(0, 340, WIDTH, 380);
+        bodyPanel.setPreferredSize(new Dimension(WIDTH, 380));
+        bodyPanel.setBackground(Color.GRAY);
+        bodyPanel.setLayout(new GridLayout(1, 1, 0, 0));
 
         frame.add(bodyPanel);
-
         bodyPanel.setVisible(true);
+
+        buttonPanel.setBackground(Color.blue);
     }
 
     public void addButton(String buttonName, JButton buttonField) {
+        JPanel buttonContainer = new JPanel();
+        buttonContainer.setPreferredSize(new Dimension(260,65));
+        buttonContainer.setLayout(new GridLayout(1,1,10,10));
+        buttonContainer.setBorder(new EmptyBorder(5,5,5,5));
+        buttonContainer.setBackground(DARK_BLUE);
+
         buttonField = new JButton(buttonName);
 
         buttonField.setBackground(LIGHT_BLUE);
@@ -131,8 +155,10 @@ public abstract class BasicScreen extends JFrame implements ActionListener {
         buttonField.setBorder(BorderFactory.createEtchedBorder(1));
         buttonField.setActionCommand(buttonName);
         buttonField.addActionListener(this);
+        buttonField.setPreferredSize(new Dimension(260,65));
 
-        bodyPanel.add(buttonField);
+        buttonContainer.add(buttonField);
+        buttonPanel.add(buttonContainer);
     }
 
 

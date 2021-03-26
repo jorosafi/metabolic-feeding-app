@@ -7,9 +7,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public abstract class UtilityScreen extends BasicScreen {
-    JEditorPane dashboard;
+    JPanel dashboard;
+    JEditorPane infoPanel;
     JButton mainMenu;
     HomeScreen homeScreen;
+    JPanel formPanel;
 
     public UtilityScreen(FeedingApp feedingApp) {
         super(feedingApp);
@@ -20,26 +22,44 @@ public abstract class UtilityScreen extends BasicScreen {
     @Override
     public void setPageTitle() {
         super.setPageTitle();
-        titlePanel.setBounds(0, 140, WIDTH, 145);
+        //titlePanel.setBounds(0, 120, WIDTH, 145);
+        titlePanel.setPreferredSize(new Dimension(WIDTH, 145));
         title.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 30));
     }
 
     @Override
     public void setBody() {
         super.setBody();
+        bodyPanel.setLayout(new GridLayout(2,1,0,0));
+        bodyPanel.setPreferredSize(new Dimension(WIDTH, 515));
 
-        dashboard = new JEditorPane();
-        dashboard.setBounds(45, 0, 360,300);
-        dashboard.setSize(360, 300);
-        dashboard.setBackground(IVORY);
-        dashboard.setContentType("text/html");
-        dashboard.setText("<h2>Dashboard Text</h2>");
+        dashboard = new JPanel();
+        //dashboard.setPreferredSize(new Dimension(WIDTH, 300));
+        dashboard.setBackground(Color.darkGray);
+        dashboard.setLayout(new GridLayout(1,1,0,0));
 
-        bodyPanel.setBounds(0, 285, WIDTH, 515);
+        infoPanel = new JEditorPane();
+        //infoPanel.setPreferredSize(new Dimension(360, 300));
+        infoPanel.setSize(360, 300);
+        infoPanel.setBackground(DARK_BLUE);
+        infoPanel.setContentType("text/html");
+        infoPanel.setText("<h2>Dashboard Text</h2>");
+        infoPanel.setBackground(Color.CYAN);
+
+        formPanel = new JPanel();
+        formPanel.setPreferredSize(new Dimension(360, 300));
+        formPanel.setVisible(false);
+        formPanel.setBackground(Color.MAGENTA);
+
+        dashboard.add(infoPanel);
+        //dashboard.add(formPanel);
         bodyPanel.add(dashboard);
+        bodyPanel.add(buttonPanel);
 
         addButton("Main Menu", mainMenu);
 
+        infoPanel.setVisible(true);
+        buttonPanel.setVisible(true);
     }
 
     @Override

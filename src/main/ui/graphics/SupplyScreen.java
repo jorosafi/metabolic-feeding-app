@@ -30,7 +30,7 @@ public class SupplyScreen extends UtilityScreen {
         Recipe currentRecipe = feedingApp.getCurrentRecipe();
         HashMap<String, Double> timeEstimate = currentSupply.estimateIngredientSupply(currentRecipe);
 
-        dashboard.setText("<html><p>Current Ingredient Supply</p><ul>\n"
+        infoPanel.setText("<html><p>Current Ingredient Supply</p><ul>\n"
                 + "<li>Ivalex: " + currentSupply.getIvalex()
                 + "gr (" + timeEstimate.get("Ivalex") + " days)</li>"
                 + "<li>Pro-Phree: " + currentSupply.getProPhree()

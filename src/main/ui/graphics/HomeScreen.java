@@ -30,13 +30,15 @@ public class HomeScreen extends BasicScreen implements ActionListener {
     public void setBody() {
         super.setBody();
 
+        bodyPanel.add(buttonPanel);
+
         addButton("Recipe", recipeButton);
         addButton("Schedule", scheduleButton);
         addButton("Feed Log", logButton);
         addButton("Ingredient Supply", supplyButton);
         addButton("Save & Exit", saveButton);
 
-
+        buttonPanel.setVisible(true);
     }
 
     @Override

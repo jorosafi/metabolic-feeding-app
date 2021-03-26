@@ -27,9 +27,9 @@ public class FeedingScheduleScreen extends UtilityScreen {
 
         String scheduleString = scheduleToString();
 
-        dashboard.setText(scheduleString);
+        infoPanel.setText(scheduleString);
 
-        addButton("Edit Schedule", editScheduleButton);
+        addButton("Log Feed", editScheduleButton);
         addButton("Create Schedule", createScheduleButton);
     }
 

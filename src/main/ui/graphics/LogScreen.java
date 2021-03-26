@@ -24,7 +24,7 @@ public class LogScreen extends UtilityScreen {
 
         String logString = logToString();
 
-        dashboard.setText(logString);
+        infoPanel.setText(logString);
     }
 
     private String logToString() {

@@ -23,8 +23,12 @@ public class LoadScreen extends BasicScreen implements ActionListener {
         JLabel introText = new JLabel("<HTML><h2>Please Load a Notebook to Proceed</h2>");
         introText.setForeground(IVORY);
         introText.setHorizontalTextPosition(SwingConstants.CENTER);
-        bodyPanel.add(introText);
+        buttonPanel.add(introText);
         addButton("Load Notebook", loadButton);
+
+        buttonPanel.setVisible(true);
+
+        bodyPanel.add(buttonPanel);
 
     }
 
