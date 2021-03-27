@@ -227,6 +227,12 @@ public class FeedingApp {
         viewSchedule();
     }
 
+    //MODIFIES: This
+    //EFFECTS: Creates new schedule for the day
+    public void createFeedingScheduleFromGUI() {
+        this.feedingSchedule = new DailySchedule(currentRecipe);
+    }
+
     //EFFECTS: prints out the feedingSchedule
     public void viewSchedule() {
         System.out.println("\n" + BABY_NAME + " has to eat at the following times today:");

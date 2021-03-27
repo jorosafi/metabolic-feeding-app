@@ -36,6 +36,20 @@ public class Recipe implements Writable {
         recipe.put("Water to total volume of:", volume);
     }
 
+    //EFFECT: returns recipe as a JSONObject
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+
+        json.put("ivalex", ivalex);
+        json.put("enfamil", enfamil);
+        json.put("proPhree", proPhree);
+        json.put("glycine", glycine);
+        json.put("breastMilk", breastMilk);
+        json.put("totalVolume", totalVolume);
+
+        return json;
+    }
+
     //Getters for Recipe ingredients
     public double getIvalex() {
         return ivalex;
@@ -61,17 +75,27 @@ public class Recipe implements Writable {
         return totalVolume;
     }
 
-    //EFFECT: returns recipe as a JSONObject
-    public JSONObject toJson() {
-        JSONObject json = new JSONObject();
+    public void setIvalex(double ivalex) {
+        this.ivalex = ivalex;
+    }
 
-        json.put("ivalex", ivalex);
-        json.put("enfamil", enfamil);
-        json.put("proPhree", proPhree);
-        json.put("glycine", glycine);
-        json.put("breastMilk", breastMilk);
-        json.put("totalVolume", totalVolume);
+    public void setEnfamil(double enfamil) {
+        this.enfamil = enfamil;
+    }
 
-        return json;
+    public void setProPhree(double proPhree) {
+        this.proPhree = proPhree;
+    }
+
+    public void setGlycine(double glycine) {
+        this.glycine = glycine;
+    }
+
+    public void setBreastMilk(double breastMilk) {
+        this.breastMilk = breastMilk;
+    }
+
+    public void setTotalVolume(double totalVolume) {
+        this.totalVolume = totalVolume;
     }
 }

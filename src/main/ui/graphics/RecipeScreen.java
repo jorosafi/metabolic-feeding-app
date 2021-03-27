@@ -6,7 +6,6 @@ import ui.FeedingApp;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.time.chrono.JapaneseChronology;
 
 public class RecipeScreen extends UtilityScreen {
     JButton updateRecipeButton;
@@ -17,7 +16,6 @@ public class RecipeScreen extends UtilityScreen {
     JTextField glycineTextField = new JTextField();
     JTextField breastMilkTextField = new JTextField();
     JTextField volumeTextField = new JTextField();
-
 
 
     public RecipeScreen(FeedingApp feedingApp) {
@@ -34,6 +32,12 @@ public class RecipeScreen extends UtilityScreen {
     public void setBody() {
         super.setBody();
 
+        addRecipeToBody();
+
+        addButton("Update Recipe", updateRecipeButton);
+    }
+
+    private void addRecipeToBody() {
         Recipe currentRecipe = feedingApp.getCurrentRecipe();
 
         infoPanel.setText("<html><ul>\n"
@@ -44,8 +48,6 @@ public class RecipeScreen extends UtilityScreen {
                 + "<li>Breast Milk: " + currentRecipe.getBreastMilk() + "</li>"
                 + "<li>Total Volume: " + currentRecipe.getVolume() + "</li>"
                 + "</ul></html>");
-
-        addButton("Update Recipe", updateRecipeButton);
     }
 
     public void loadUpdateRecipeForm() {
@@ -70,14 +72,14 @@ public class RecipeScreen extends UtilityScreen {
         JPanel inputPanel = new JPanel();
         JLabel inputLabel = new JLabel(labelName);
 
-        inputLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        inputLabel.setFont(new Font("Arial", Font.BOLD, 16));
         inputLabel.setForeground(IVORY);
 
         inputPanel.setBackground(DARK_BLUE);
         inputPanel.add(inputLabel);
         inputPanel.add(textField);
 
-        textField.setPreferredSize(new Dimension(40,40));
+        textField.setPreferredSize(new Dimension(45, 35));
         textField.setFont(new Font("Arial", Font.PLAIN, 22));
         textField.setBackground(IVORY);
         textField.setForeground(DARK_BLUE);
@@ -95,6 +97,67 @@ public class RecipeScreen extends UtilityScreen {
             dashboard.add(formPanel);
             loadUpdateRecipeForm();
             formPanel.setVisible(true);
+
+        } else if ("Submit".equals(e.getActionCommand())) {
+
+            updateIvalex(getNewIngredientValue(ivalexTextField));
+            updateEnfamil(getNewIngredientValue(enfamilTextField));
+            updateProPhree(getNewIngredientValue(proPhreeTextField));
+            updateGlycine(getNewIngredientValue(glycineTextField));
+            updateBreastMilk(getNewIngredientValue(breastMilkTextField));
+            updateVolume(getNewIngredientValue(volumeTextField));
+
+            frame.dispose();
+            new RecipeScreen(this.feedingApp);
+            JOptionPane.showMessageDialog(frame, "Your Recipe has been updated", "Recipe Updated",
+                    JOptionPane.PLAIN_MESSAGE);
+        }
+    }
+
+    //EFFECTS: returns value of textField in the form of Double. If textField is empty, return -1
+    private double getNewIngredientValue(JTextField ingredientTextField) {
+        double ingredientAmount;
+        if (ingredientTextField.getText().isEmpty()) {
+            ingredientAmount = -1;
+        } else {
+            ingredientAmount = Double.parseDouble(ingredientTextField.getText());
+        }
+        return ingredientAmount;
+    }
+
+    private void updateIvalex(double amount) {
+        if (amount != -1) {
+            feedingApp.getCurrentRecipe().setIvalex(amount);
+        }
+    }
+
+    private void updateProPhree(double amount) {
+        if (amount != -1) {
+            feedingApp.getCurrentRecipe().setProPhree(amount);
+        }
+    }
+
+    private void updateEnfamil(double amount) {
+        if (amount != -1) {
+            feedingApp.getCurrentRecipe().setEnfamil(amount);
+        }
+    }
+
+    private void updateGlycine(double amount) {
+        if (amount != -1) {
+            feedingApp.getCurrentRecipe().setGlycine(amount);
+        }
+    }
+
+    private void updateBreastMilk(double amount) {
+        if (amount != -1) {
+            feedingApp.getCurrentRecipe().setBreastMilk(amount);
+        }
+    }
+
+    private void updateVolume(double amount) {
+        if (amount != -1) {
+            feedingApp.getCurrentRecipe().setTotalVolume(amount);
         }
     }
 

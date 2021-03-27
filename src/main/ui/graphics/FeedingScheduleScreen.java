@@ -1,11 +1,14 @@
 package ui.graphics;
 
 import model.Feed;
+import model.Log;
 import ui.FeedingApp;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+
+import static java.lang.Integer.parseInt;
 
 public class FeedingScheduleScreen extends UtilityScreen {
     JButton editScheduleButton;
@@ -50,10 +53,32 @@ public class FeedingScheduleScreen extends UtilityScreen {
     @Override
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
-        if ("Edit Schedule".equals(e.getActionCommand())) {
-            System.out.println("Edit Schedule");
+        if ("Log Feed".equals(e.getActionCommand())) {
+            addNewLog();
+            frame.dispose();
+            new FeedingScheduleScreen(this.feedingApp);
+            JOptionPane.showMessageDialog(frame, "The feed has been logged",
+                    "Schedule Updated",
+                    JOptionPane.PLAIN_MESSAGE);
         } else if ("Create Schedule".equals(e.getActionCommand())) {
-            System.out.println("Create Schedule");
+            feedingApp.createFeedingScheduleFromGUI();
+            frame.dispose();
+            new FeedingScheduleScreen(this.feedingApp);
+            JOptionPane.showMessageDialog(frame, "A new schedule has been created for today",
+                    "Schedule Updated",
+                    JOptionPane.PLAIN_MESSAGE);
         }
+    }
+
+    private void addNewLog() {
+        Feed latestFeed = feedingApp.getFeedingSchedule().getFeedByIndex(0);
+        String userInputAmount = JOptionPane.showInputDialog(frame, "You are logging the "
+                + latestFeed.getTime() + " feed."
+                + "\nWas there any milk leftover?");
+        int userInputInt = parseInt(userInputAmount);
+        Log log = new Log(latestFeed, userInputInt);
+
+        feedingApp.getFeedingSchedule().removeFirstFeed();
+        feedingApp.getFeedLogList().addLog(log);
     }
 }

@@ -53,7 +53,6 @@ public abstract class UtilityScreen extends BasicScreen {
         formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
 
         dashboard.add(infoPanel);
-        //dashboard.add(formPanel);
         bodyPanel.add(dashboard);
         bodyPanel.add(buttonPanel);
 
