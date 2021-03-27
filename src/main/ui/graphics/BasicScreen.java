@@ -161,5 +161,29 @@ public abstract class BasicScreen extends JFrame implements ActionListener {
         buttonPanel.add(buttonContainer);
     }
 
+    public void addButton(String buttonName, JButton buttonField, JPanel container) {
+        JPanel buttonContainer = new JPanel();
+        buttonContainer.setPreferredSize(new Dimension(260,65));
+        buttonContainer.setLayout(new GridLayout(1,1,10,10));
+        buttonContainer.setBorder(new EmptyBorder(5,5,5,5));
+        buttonContainer.setBackground(DARK_BLUE);
+
+        buttonField = new JButton(buttonName);
+
+        buttonField.setBackground(LIGHT_BLUE);
+        buttonField.setForeground(DARK_BLUE);
+        buttonField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        buttonField.setHorizontalTextPosition(JButton.CENTER);
+        buttonField.setVerticalTextPosition(JButton.CENTER);
+        buttonField.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 20));
+        buttonField.setBorder(BorderFactory.createEtchedBorder(1));
+        buttonField.setActionCommand(buttonName);
+        buttonField.addActionListener(this);
+        buttonField.setPreferredSize(new Dimension(260,65));
+
+        buttonContainer.add(buttonField);
+        container.add(buttonContainer);
+    }
+
 
 }

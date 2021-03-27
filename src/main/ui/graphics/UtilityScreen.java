@@ -50,6 +50,7 @@ public abstract class UtilityScreen extends BasicScreen {
         formPanel.setPreferredSize(new Dimension(360, 300));
         formPanel.setVisible(false);
         formPanel.setBackground(Color.MAGENTA);
+        formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
 
         dashboard.add(infoPanel);
         //dashboard.add(formPanel);
