@@ -44,4 +44,25 @@ public class RecipeTest {
         assertEquals(6, json.length());
     }
 
+    @Test
+    //EFFECTS: Tests setters working properly
+    public void testSetters() {
+        testRecipe = new Recipe(40, 20,
+                15, 1.5, 350, 920);
+
+        testRecipe.setTotalVolume(1000);
+        testRecipe.setBreastMilk(500);
+        testRecipe.setGlycine(5);
+        testRecipe.setEnfamil(100);
+        testRecipe.setProPhree(50);
+        testRecipe.setIvalex(10);
+
+        assertEquals(10, testRecipe.getIvalex());
+        assertEquals(100, testRecipe.getEnfamil());
+        assertEquals(50, testRecipe.getProPhree());
+        assertEquals(5, testRecipe.getGlycine());
+        assertEquals(500, testRecipe.getBreastMilk());
+        assertEquals(1000, testRecipe.getVolume());
+    }
+
 }

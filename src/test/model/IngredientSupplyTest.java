@@ -132,4 +132,17 @@ public class IngredientSupplyTest {
         assertEquals(3, json.length());
         assertEquals(800, json.getInt("proPhree"));
     }
+
+    @Test
+    //EFFECTS: Tests setters working properly
+    public void testSetters() {
+
+        testSupplyList.setGlycine(500);
+        testSupplyList.setProPhree(2000);
+        testSupplyList.setIvalex(3000);
+
+        assertEquals(3000, testSupplyList.getIvalex());
+        assertEquals(2000, testSupplyList.getProPhree());
+        assertEquals(500, testSupplyList.getGlycine());
+    }
 }
