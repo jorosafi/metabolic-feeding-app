@@ -37,39 +37,38 @@ public abstract class UtilityScreen extends BasicScreen {
         setInfoPanelStyling();
         setFormPanelStyling();
 
-        dashboard = new JPanel();
-        dashboard.setBackground(DARK_BLUE);
-        dashboard.setBorder(BorderFactory.createMatteBorder(5,0,5,0, MID_BLUE));
-        dashboard.setLayout(new GridLayout(1,1,0,0));
-
-        infoPanel = new JLabel();
-        infoPanel.setPreferredSize(new Dimension(360, 300));
-        infoPanel.setForeground(IVORY);
-        infoPanel.setBackground(DARK_BLUE);
-        infoPanel.setFont(new Font("Arial", Font.BOLD, 22));
-        infoPanel.setText("<h2>Dashboard Text</h2>");
-
-        formPanel = new JPanel();
-        formPanel.setPreferredSize(new Dimension(360, 300));
-        formPanel.setVisible(false);
-        formPanel.setBackground(DARK_BLUE);
-        formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
-
         dashboard.add(infoPanel);
         bodyPanel.add(dashboard);
         bodyPanel.add(buttonPanel);
-
-        addButton("Main Menu", mainMenu);
 
         infoPanel.setVisible(true);
         buttonPanel.setVisible(true);
     }
 
-    protected abstract void setFormPanelStyling();
+    private void setFormPanelStyling() {
+        formPanel = new JPanel();
+        formPanel.setPreferredSize(new Dimension(360, 300));
+        formPanel.setVisible(false);
+        formPanel.setBackground(DARK_BLUE);
+        formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
+    }
 
-    protected abstract void setInfoPanelStyling();
+    private void setInfoPanelStyling() {
+        infoPanel = new JLabel();
+        infoPanel.setPreferredSize(new Dimension(360, 300));
+        infoPanel.setForeground(IVORY);
+        infoPanel.setBackground(DARK_BLUE);
+        infoPanel.setFont(new Font("Arial", Font.BOLD, 20));
+        infoPanel.setText("<h2>Dashboard Text</h2>");
+        infoPanel.setBorder(BorderFactory.createMatteBorder(10,20,10,20,DARK_BLUE));
+    }
 
-    protected abstract void setDashboardStyling();
+    private void setDashboardStyling() {
+        dashboard = new JPanel();
+        dashboard.setBackground(DARK_BLUE);
+        dashboard.setBorder(BorderFactory.createMatteBorder(5,0,5,0, MID_BLUE));
+        dashboard.setLayout(new GridLayout(1,1,0,0));
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {

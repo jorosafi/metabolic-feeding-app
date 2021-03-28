@@ -25,11 +25,12 @@ public class LogScreen extends UtilityScreen {
         String logString = logToString();
 
         infoPanel.setText(logString);
+        addButton("Main Menu", mainMenu);
     }
 
     private String logToString() {
         LogList logList = feedingApp.getFeedLogList();
-        String logString = "<html><p>   Date   - Time - Feed Amount - Amound Left</p><ul>";
+        String logString = "<html><p>   Date   - Time - Feed Amount - Amount Left</p><ul>";
 
         for (int i = 0; i < 6; i++) {
             if (i < logList.logListSize()) {

@@ -34,6 +34,7 @@ public class SupplyScreen extends UtilityScreen {
         addSupplyToBody();
 
         addButton("Update Supply", updateSupplyButton);
+        addButton("Main Menu", mainMenu);
     }
 
     private void addSupplyToBody() {
@@ -41,14 +42,12 @@ public class SupplyScreen extends UtilityScreen {
         Recipe currentRecipe = feedingApp.getCurrentRecipe();
         HashMap<String, Double> timeEstimate = currentSupply.estimateIngredientSupply(currentRecipe);
 
-        infoPanel.setText("<html><p>Current Ingredient Supply</p><ul>\n"
-                + "<li>Ivalex: " + currentSupply.getIvalex()
-                + "gr (" + Math.round(timeEstimate.get("Ivalex"))  + " days)</li>"
-                + "<li>Pro-Phree: " + currentSupply.getProPhree()
-                + "gr (" + Math.round(timeEstimate.get("Pro Phree")) + " days)</li>"
-                + "<li>Glycine: " + currentSupply.getGlycine()
-                + "gr (" + Math.round(timeEstimate.get("Glycine")) + " days)</li>"
-                + "</ul></html>");
+        infoPanel.setText("<html><p>Ivalex: " + currentSupply.getIvalex()
+                + "gr (" + Math.round(timeEstimate.get("Ivalex")) + " days)</p>"
+                + "<p>Pro-Phree: " + currentSupply.getProPhree()
+                + "gr (" + Math.round(timeEstimate.get("Pro Phree")) + " days)</p>"
+                + "<p>Glycine: " + currentSupply.getGlycine()
+                + "gr (" + Math.round(timeEstimate.get("Glycine")) + " days)</p></html>");
     }
 
     private void loadUpdateSupplyForm() {
@@ -63,7 +62,7 @@ public class SupplyScreen extends UtilityScreen {
         addIngredientInput(proPhreeTextField, "Pro Phree (gr)");
         addIngredientInput(glycineTextField, "Glycine (gr)");
 
-        addButton("Submit", submitButton, formPanel);
+        addSubmitButton("Submit", submitButton, formPanel);
     }
 
     private void addIngredientInput(JTextField textField, String labelName) {

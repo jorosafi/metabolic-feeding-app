@@ -35,6 +35,7 @@ public class RecipeScreen extends UtilityScreen {
         addRecipeToBody();
 
         addButton("Update Recipe", updateRecipeButton);
+        addButton("Main Menu", mainMenu);
     }
 
     private void addRecipeToBody() {
@@ -65,7 +66,7 @@ public class RecipeScreen extends UtilityScreen {
         addIngredientInput(breastMilkTextField, "Breast Milk (ml)");
         addIngredientInput(volumeTextField, "Volume (ml)");
 
-        addButton("Submit", submitButton, formPanel);
+        addSubmitButton("Submit", submitButton, formPanel);
     }
 
     private void addIngredientInput(JTextField textField, String labelName) {

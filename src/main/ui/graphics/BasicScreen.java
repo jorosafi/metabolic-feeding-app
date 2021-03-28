@@ -111,8 +111,9 @@ public abstract class BasicScreen extends JFrame implements ActionListener {
         title.setHorizontalAlignment(JLabel.CENTER);
         title.setLayout(new FlowLayout());
         title.setForeground(IVORY);
-        title.setText("<HTML><H1>Santiago's Metabolic Feeding App</H1>");
+        title.setText("<html><h1 ALIGN=CENTER>Santiago's Metabolic Feeding App</h1></html>");
         title.setHorizontalTextPosition(JLabel.CENTER);
+        title.setBorder(BorderFactory.createMatteBorder(0,20,0,20,DARK_BLUE));
         title.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 30));
 
         titlePanel.add(title);
@@ -145,9 +146,9 @@ public abstract class BasicScreen extends JFrame implements ActionListener {
         buttonContainer.setBackground(DARK_BLUE);
 
         buttonField = new JButton(buttonName);
-
         buttonField.setBackground(LIGHT_BLUE);
         buttonField.setForeground(DARK_BLUE);
+        buttonField.setFocusable(false);
         buttonField.setAlignmentX(Component.CENTER_ALIGNMENT);
         buttonField.setHorizontalTextPosition(JButton.CENTER);
         buttonField.setVerticalTextPosition(JButton.CENTER);
@@ -156,12 +157,17 @@ public abstract class BasicScreen extends JFrame implements ActionListener {
         buttonField.setActionCommand(buttonName);
         buttonField.addActionListener(this);
         buttonField.setPreferredSize(new Dimension(260,65));
+        if (buttonName.equals("Main Menu")) {
+            buttonField.setBackground(MID_BLUE);
+            buttonField.setForeground(IVORY);
+        }
 
         buttonContainer.add(buttonField);
         buttonPanel.add(buttonContainer);
     }
 
-    public void addButton(String buttonName, JButton buttonField, JPanel container) {
+
+    public void addSubmitButton(String buttonName, JButton buttonField, JPanel container) {
         JPanel buttonContainer = new JPanel();
         buttonContainer.setPreferredSize(new Dimension(260,65));
         buttonContainer.setLayout(new GridLayout(1,1,10,10));

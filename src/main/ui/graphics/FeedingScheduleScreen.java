@@ -34,6 +34,7 @@ public class FeedingScheduleScreen extends UtilityScreen {
 
         addButton("Log Feed", editScheduleButton);
         addButton("Create Schedule", createScheduleButton);
+        addButton("Main Menu", mainMenu);
     }
 
     public String scheduleToString() {
