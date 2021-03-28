@@ -92,7 +92,6 @@ public class RecipeScreen extends UtilityScreen {
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
         if ("Update Recipe".equals(e.getActionCommand())) {
-            System.out.println("Update Recipe");
             dashboard.remove(infoPanel);
             dashboard.add(formPanel);
             loadUpdateRecipeForm();

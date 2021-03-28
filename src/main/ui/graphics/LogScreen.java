@@ -33,7 +33,7 @@ public class LogScreen extends UtilityScreen {
 
         for (int i = 0; i < 6; i++) {
             if (i < logList.logListSize()) {
-                Log log = logList.getLogByIndex(i);
+                Log log = logList.getLogByIndex(logList.logListSize() - 1 - i);
                 logString = logString + "<li>" + log.getFeed().getTime() + " - "
                         + Math.round(log.getFeed().getAmount()) + " - "
                         + log.getAmount() + "</li>";

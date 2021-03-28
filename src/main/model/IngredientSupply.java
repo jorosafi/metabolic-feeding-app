@@ -121,4 +121,16 @@ public class IngredientSupply implements Writable {
 
         return json;
     }
+
+    public void setIvalex(double ivalex) {
+        this.ivalex = ivalex;
+    }
+
+    public void setProPhree(double proPhree) {
+        this.proPhree = proPhree;
+    }
+
+    public void setGlycine(double glycine) {
+        this.glycine = glycine;
+    }
 }

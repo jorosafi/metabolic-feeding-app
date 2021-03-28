@@ -41,10 +41,10 @@ public abstract class BasicScreen extends JFrame implements ActionListener {
 
         //frame.setResizable(false);
         frame.setLayout(new BoxLayout(frame.getContentPane(),BoxLayout.Y_AXIS));
-        frame.setBackground(Color.white);
+        frame.setBackground(DARK_BLUE);
         frame.setIconImage(new ImageIcon(logoPath).getImage());
 
-        frame.getContentPane().setBackground(Color.red);
+        frame.getContentPane().setBackground(DARK_BLUE);
         frame.getContentPane().setSize(new Dimension(WIDTH, HEIGHT));
 
         setHeader();
@@ -84,7 +84,7 @@ public abstract class BasicScreen extends JFrame implements ActionListener {
 
         //headerPanel.setBounds(0, 0, WIDTH, 120);
         headerPanel.setPreferredSize(new Dimension(WIDTH, 110));
-        headerPanel.setBackground(Color.DARK_GRAY);
+        headerPanel.setBackground(DARK_BLUE);
         headerPanel.setLayout(new GridLayout(1, 1, 0, 0));
 
         headerLogo.setIcon(logo);
@@ -104,7 +104,7 @@ public abstract class BasicScreen extends JFrame implements ActionListener {
 
         //titlePanel.setBounds(0, 120, WIDTH, 220);
         titlePanel.setPreferredSize(new Dimension(WIDTH, 220));
-        titlePanel.setBackground(Color.PINK);
+        titlePanel.setBackground(DARK_BLUE);
         titlePanel.setLayout(new GridLayout(1,1,0,0));
 
         title.setVerticalAlignment(JLabel.CENTER);
@@ -128,13 +128,13 @@ public abstract class BasicScreen extends JFrame implements ActionListener {
 
         //bodyPanel.setBounds(0, 340, WIDTH, 380);
         bodyPanel.setPreferredSize(new Dimension(WIDTH, 380));
-        bodyPanel.setBackground(Color.GRAY);
+        bodyPanel.setBackground(DARK_BLUE);
         bodyPanel.setLayout(new GridLayout(1, 1, 0, 0));
 
         frame.add(bodyPanel);
         bodyPanel.setVisible(true);
 
-        buttonPanel.setBackground(Color.blue);
+        buttonPanel.setBackground(DARK_BLUE);
     }
 
     public void addButton(String buttonName, JButton buttonField) {
