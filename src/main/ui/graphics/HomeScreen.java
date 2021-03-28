@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//Creates, styles and adds functionality to the app's home screen
 public class HomeScreen extends BasicScreen implements ActionListener {
 
     JButton recipeButton;
@@ -13,18 +14,20 @@ public class HomeScreen extends BasicScreen implements ActionListener {
     JButton logButton;
     JButton supplyButton;
     JButton saveButton;
-
     RecipeScreen recipeScreen;
     FeedingScheduleScreen feedingScheduleScreen;
     LogScreen logScreen;
     SupplyScreen supplyScreen;
 
+    //EFFECTS: Constructs new HomeScreen
     public HomeScreen(FeedingApp feedingApp) {
         super(feedingApp);
     }
 
 
     @Override
+    //MODIFIES: This (bodyPanel)
+    //EFFECTS: Customizes bodyPanel for HomeScreen
     public void setBody() {
         super.setBody();
 
@@ -40,6 +43,7 @@ public class HomeScreen extends BasicScreen implements ActionListener {
     }
 
     @Override
+    //EFFECTS: Handles behaviour for buttons in HomeScreen.
     public void actionPerformed(ActionEvent e) {
         if ("Recipe".equals(e.getActionCommand())) {
             frame.dispose();
@@ -58,6 +62,8 @@ public class HomeScreen extends BasicScreen implements ActionListener {
         }
     }
 
+    //EFFECTS: Saves current notebook and notifies user the notebook has been saved. Dialog asks if user would like to
+    //          exit or continue working.
     public void saveAndClose() {
         feedingApp.saveNotebook();
         int userDialogueResponse = JOptionPane.showConfirmDialog(null,

@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.HashMap;
 
+//Creates SupplyScreen using UtilityScreen as template
 public class SupplyScreen extends UtilityScreen {
 
     JButton updateSupplyButton;
@@ -17,17 +18,22 @@ public class SupplyScreen extends UtilityScreen {
     JTextField proPhreeTextField = new JTextField();
     JTextField glycineTextField = new JTextField();
 
+    //EFFECTS: Constructs SupplyScreen using UtilityScreen's constructor
     public SupplyScreen(FeedingApp feedingApp) {
         super(feedingApp);
     }
 
     @Override
+    //MODIFIES: This(titlePanel)
+    //EFFECTS: Set's page title
     public void setPageTitle() {
         super.setPageTitle();
         title.setText("<html><p>Ingredient Supply</p></html>");
     }
 
     @Override
+    //MODIFIES: This(bodyPanel)
+    //EFFECTS: Adds recipe and action buttons to bodyPanel
     public void setBody() {
         super.setBody();
 
@@ -37,6 +43,7 @@ public class SupplyScreen extends UtilityScreen {
         addButton("Main Menu", mainMenu);
     }
 
+    //EFFECTS: Adds the supply list from feedingApp to bodyPanel in a human readable format
     private void addSupplyToBody() {
         IngredientSupply currentSupply = feedingApp.getIngredientSupply();
         Recipe currentRecipe = feedingApp.getCurrentRecipe();
@@ -50,6 +57,8 @@ public class SupplyScreen extends UtilityScreen {
                 + "gr (" + Math.round(timeEstimate.get("Glycine")) + " days)</p></html>");
     }
 
+    //MODIFIES: this(formPanel)
+    //EFFECTS: Creates user form for user to input new ingredient supply values and loads it to dashboard
     private void loadUpdateSupplyForm() {
         JLabel formTitle = new JLabel("<html><h2>Enter New Ingredient Amounts</h2></html>");
         formTitle.setHorizontalTextPosition(JLabel.CENTER);
@@ -65,6 +74,8 @@ public class SupplyScreen extends UtilityScreen {
         addSubmitButton("Submit", submitButton, formPanel);
     }
 
+    //MODIFIES: this(formPanel)
+    //EFFECTS: Helper method for loadUpdateSupplyForm() that adds input fields to formPanel
     private void addIngredientInput(JTextField textField, String labelName) {
         JPanel inputPanel = new JPanel();
         JLabel inputLabel = new JLabel(labelName);
@@ -85,7 +96,8 @@ public class SupplyScreen extends UtilityScreen {
         inputPanel.setVisible(true);
     }
 
-    private double getNewIngredientValue(JTextField ingredientTextField) throws NumberFormatException  {
+    //EFFECTS: returns value of textField in the form of Double. If textField is empty, return -1
+    private double getNewIngredientValue(JTextField ingredientTextField) throws NumberFormatException {
         double ingredientAmount;
         if (ingredientTextField.getText().isEmpty()) {
             ingredientAmount = -1;
@@ -95,18 +107,24 @@ public class SupplyScreen extends UtilityScreen {
         return ingredientAmount;
     }
 
+    //MODIFIES: feedingApp.supplyList
+    //EFFECTS: Updates Ivalex amount of feedingApp.supplyList
     private void updateIvalex(double amount) {
         if (amount != -1) {
             feedingApp.getIngredientSupply().setIvalex(amount);
         }
     }
 
+    //MODIFIES: feedingApp.supplyList
+    //EFFECTS: Updates ProPhree amount of feedingApp.supplyList
     private void updateProPhree(double amount) {
         if (amount != -1) {
             feedingApp.getIngredientSupply().setProPhree(amount);
         }
     }
 
+    //MODIFIES: feedingApp.supplyList
+    //EFFECTS: Updates Glycine amount of feedingApp.supplyList
     private void updateGlycine(double amount) {
         if (amount != -1) {
             feedingApp.getIngredientSupply().setGlycine(amount);
@@ -114,10 +132,10 @@ public class SupplyScreen extends UtilityScreen {
     }
 
     @Override
+    //EFFECTS: Handles behaviour for buttons in SupplyScreen
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
         if ("Update Supply".equals(e.getActionCommand())) {
-            System.out.println("Update Supply");
             dashboard.remove(infoPanel);
             dashboard.add(formPanel);
             loadUpdateSupplyForm();
@@ -127,6 +145,10 @@ public class SupplyScreen extends UtilityScreen {
         }
     }
 
+    //MODIFIES: This, feedingApp.supplyList
+    //EFFECTS: When user clicks submit, values are updated in feedingApp.supplyList, dialog box confirms update
+    //          and new SupplyScreen appears with new supply list. If user enters non-numerical values in form, method
+    //          catches NumberFormatException and reminds user to only enter numerical values.
     private void runSubmitCommand() {
         try {
             double ivalexValue = getNewIngredientValue(ivalexTextField);

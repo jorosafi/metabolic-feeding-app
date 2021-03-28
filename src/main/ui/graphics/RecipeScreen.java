@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+//Creates and styles the RecipeScreen using UtilityScreen as template
 public class RecipeScreen extends UtilityScreen {
     JButton updateRecipeButton;
     JButton submitButton;
@@ -17,18 +18,22 @@ public class RecipeScreen extends UtilityScreen {
     JTextField breastMilkTextField = new JTextField();
     JTextField volumeTextField = new JTextField();
 
-
+    //EFFECTS: Constructs RecipeScreen using UtilityScreen's contructor
     public RecipeScreen(FeedingApp feedingApp) {
         super(feedingApp);
     }
 
     @Override
+    //MODIFIES: This(titlePanel)
+    //EFFECTS: Set's page title
     public void setPageTitle() {
         super.setPageTitle();
         title.setText("<html><p>Current Formula Recipe</p></html>");
     }
 
     @Override
+    //MODIFIES: This(bodyPanel)
+    //EFFECTS: Adds recipe and action buttons to bodyPanel
     public void setBody() {
         super.setBody();
 
@@ -38,6 +43,7 @@ public class RecipeScreen extends UtilityScreen {
         addButton("Main Menu", mainMenu);
     }
 
+    //EFFECTS: Adds the recipe from feedingApp to bodyPanel in a human readsble format
     private void addRecipeToBody() {
         Recipe currentRecipe = feedingApp.getCurrentRecipe();
 
@@ -51,6 +57,8 @@ public class RecipeScreen extends UtilityScreen {
                 + "</ul></html>");
     }
 
+    //MODIFIES: this(formPanel)
+    //EFFECTS: Creates user form for user to input new recipe values and loads it to dashboard
     public void loadUpdateRecipeForm() {
         JLabel formTitle = new JLabel("<html><h2>Enter New Ingredient Amounts</h2></html>");
         formTitle.setHorizontalTextPosition(JLabel.CENTER);
@@ -69,6 +77,8 @@ public class RecipeScreen extends UtilityScreen {
         addSubmitButton("Submit", submitButton, formPanel);
     }
 
+    //MODIFIES: this(formPanel)
+    //EFFECTS: Helper method for loadUpdateRecipeForm() that adds input fields to formPanel
     private void addIngredientInput(JTextField textField, String labelName) {
         JPanel inputPanel = new JPanel();
         JLabel inputLabel = new JLabel(labelName);
@@ -90,6 +100,7 @@ public class RecipeScreen extends UtilityScreen {
     }
 
     @Override
+    //EFFECTS: Handles behaviour of action buttons
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
         if ("Update Recipe".equals(e.getActionCommand())) {
@@ -103,6 +114,10 @@ public class RecipeScreen extends UtilityScreen {
         }
     }
 
+    //MODIFIES: This, feedingApp.currentRecipe
+    //EFFECTS: When user clicks submit, values are updated in feedingApp.currentRecipe, dialog box confirms update
+    //          and new RecipeScreen appears with new recipe. If user enters non-numerical values in form, method
+    //          catches NumberFormatException and reminds user to only enter numerical values.
     private void runSubmitCommand() {
         try {
             double ivalexValue = getNewIngredientValue(ivalexTextField);
@@ -138,41 +153,51 @@ public class RecipeScreen extends UtilityScreen {
         return ingredientAmount;
     }
 
+    //MODIFIES: feedingApp.currentRecipe
+    //EFFECTS: Updates Ivalex amount of feedingApp.currentRecipe
     private void updateIvalex(double amount) {
         if (amount != -1) {
             feedingApp.getCurrentRecipe().setIvalex(amount);
         }
     }
 
+    //MODIFIES: feedingApp.currentRecipe
+    //EFFECTS: Updates ProPhree amount of feedingApp.currentRecipe
     private void updateProPhree(double amount) {
         if (amount != -1) {
             feedingApp.getCurrentRecipe().setProPhree(amount);
         }
     }
 
+    //MODIFIES: feedingApp.currentRecipe
+    //EFFECTS: Updates Enfamil amount of feedingApp.currentRecipe
     private void updateEnfamil(double amount) {
         if (amount != -1) {
             feedingApp.getCurrentRecipe().setEnfamil(amount);
         }
     }
 
+    //MODIFIES: feedingApp.currentRecipe
+    //EFFECTS: Updates Glycine amount of feedingApp.currentRecipe
     private void updateGlycine(double amount) {
         if (amount != -1) {
             feedingApp.getCurrentRecipe().setGlycine(amount);
         }
     }
 
+    //MODIFIES: feedingApp.currentRecipe
+    //EFFECTS: Updates BreastMilk amount of feedingApp.currentRecipe
     private void updateBreastMilk(double amount) {
         if (amount != -1) {
             feedingApp.getCurrentRecipe().setBreastMilk(amount);
         }
     }
 
+    //MODIFIES: feedingApp.currentRecipe
+    //EFFECTS: Updates Volume amount of feedingApp.currentRecipe
     private void updateVolume(double amount) {
         if (amount != -1) {
             feedingApp.getCurrentRecipe().setTotalVolume(amount);
         }
     }
-
-
 }

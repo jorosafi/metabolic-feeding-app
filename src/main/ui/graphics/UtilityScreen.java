@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+//Abstract class that creates and styles basic architecture for the utility screens
 public abstract class UtilityScreen extends BasicScreen {
     JPanel dashboard;
     JLabel infoPanel;
@@ -13,6 +14,7 @@ public abstract class UtilityScreen extends BasicScreen {
     HomeScreen homeScreen;
     JPanel formPanel;
 
+    //EFFECTS: Constructs and UtilityScreen using settings from Basic Screen
     public UtilityScreen(FeedingApp feedingApp) {
         super(feedingApp);
     }
@@ -20,14 +22,16 @@ public abstract class UtilityScreen extends BasicScreen {
 
 
     @Override
+    //MODIFIES: this(titlePanel)
+    //EFFECTS: Custom settings for titlePanel in UtilityScreens
     public void setPageTitle() {
         super.setPageTitle();
-        //titlePanel.setBounds(0, 120, WIDTH, 145);
         titlePanel.setPreferredSize(new Dimension(WIDTH, 145));
-        title.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 30));
     }
 
     @Override
+    //MODIFIES: this(bodyPanel)
+    //EFFECTS: Custom settings for bodyPanel in UtilityScreens
     public void setBody() {
         super.setBody();
         bodyPanel.setLayout(new GridLayout(2,1,0,0));
@@ -45,6 +49,7 @@ public abstract class UtilityScreen extends BasicScreen {
         buttonPanel.setVisible(true);
     }
 
+    //EFFECTS: Creates and styles the formPanel that houses the input forms in UtilityScreens
     private void setFormPanelStyling() {
         formPanel = new JPanel();
         formPanel.setPreferredSize(new Dimension(360, 300));
@@ -53,6 +58,7 @@ public abstract class UtilityScreen extends BasicScreen {
         formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
     }
 
+    //EFFECTS: Creates and styles the infoPanel that houses the information areas in UtilityScreens
     private void setInfoPanelStyling() {
         infoPanel = new JLabel();
         infoPanel.setPreferredSize(new Dimension(360, 300));
@@ -63,6 +69,7 @@ public abstract class UtilityScreen extends BasicScreen {
         infoPanel.setBorder(BorderFactory.createMatteBorder(10,20,10,20,DARK_BLUE));
     }
 
+    //EFFECTS: Creates and styles the dashboard panel that houses the infoPanel and formPanels in UtilityScreens
     private void setDashboardStyling() {
         dashboard = new JPanel();
         dashboard.setBackground(DARK_BLUE);
@@ -71,6 +78,8 @@ public abstract class UtilityScreen extends BasicScreen {
     }
 
     @Override
+    //EFFECTS: handles behaviour for Main Menu button across all UtilityScreens. Other buttons are handled in their
+            // own class. Main Menu button disposes of existing frame and creates new HomeScreen for user.
     public void actionPerformed(ActionEvent e) {
         if ("Main Menu".equals(e.getActionCommand())) {
             frame.dispose();
