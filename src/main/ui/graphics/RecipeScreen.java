@@ -99,27 +99,40 @@ public class RecipeScreen extends UtilityScreen {
             formPanel.setVisible(true);
 
         } else if ("Submit".equals(e.getActionCommand())) {
+            runSubmitCommand();
+        }
+    }
 
-            updateIvalex(getNewIngredientValue(ivalexTextField));
-            updateEnfamil(getNewIngredientValue(enfamilTextField));
-            updateProPhree(getNewIngredientValue(proPhreeTextField));
-            updateGlycine(getNewIngredientValue(glycineTextField));
-            updateBreastMilk(getNewIngredientValue(breastMilkTextField));
-            updateVolume(getNewIngredientValue(volumeTextField));
+    private void runSubmitCommand() {
+        try {
+            double ivalexValue = getNewIngredientValue(ivalexTextField);
+            double enfamilValue = getNewIngredientValue(enfamilTextField);
+            double proPhreeValue = getNewIngredientValue(proPhreeTextField);
+            double glycineValue = getNewIngredientValue(glycineTextField);
+            double breastMilkValue = getNewIngredientValue(breastMilkTextField);
+            double volumeValue = getNewIngredientValue(volumeTextField);
+
+            updateIvalex(ivalexValue);
+            updateEnfamil(enfamilValue);
+            updateProPhree(proPhreeValue);
+            updateGlycine(glycineValue);
+            updateBreastMilk(breastMilkValue);
+            updateVolume(volumeValue);
 
             frame.dispose();
             new RecipeScreen(this.feedingApp);
             JOptionPane.showMessageDialog(frame, "Your Recipe has been updated", "Recipe Updated",
                     JOptionPane.PLAIN_MESSAGE);
+        } catch (NumberFormatException exception) {
+            JOptionPane.showMessageDialog(frame, "Please enter a numeric value", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
     //EFFECTS: returns value of textField in the form of Double. If textField is empty, return -1
-    private double getNewIngredientValue(JTextField ingredientTextField) {
-        double ingredientAmount;
-        if (ingredientTextField.getText().isEmpty()) {
-            ingredientAmount = -1;
-        } else {
+    private double getNewIngredientValue(JTextField ingredientTextField) throws NumberFormatException {
+        double ingredientAmount = -1;
+        if (!ingredientTextField.getText().isEmpty()) {
             ingredientAmount = Double.parseDouble(ingredientTextField.getText());
         }
         return ingredientAmount;

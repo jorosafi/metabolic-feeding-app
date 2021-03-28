@@ -124,10 +124,6 @@ public abstract class BasicScreen extends JFrame implements ActionListener {
     }
 
     public void setBody() {
-//        GridLayout gridLayout = new GridLayout(5, 1, 40, 20);
-//        BoxLayout boxLayout = new BoxLayout(bodyPanel, BoxLayout.Y_AXIS);
-
-        //bodyPanel.setBounds(0, 340, WIDTH, 380);
         bodyPanel.setPreferredSize(new Dimension(WIDTH, 380));
         bodyPanel.setBackground(DARK_BLUE);
         bodyPanel.setLayout(new GridLayout(1, 1, 0, 0));

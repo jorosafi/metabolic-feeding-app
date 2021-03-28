@@ -85,7 +85,7 @@ public class SupplyScreen extends UtilityScreen {
         inputPanel.setVisible(true);
     }
 
-    private double getNewIngredientValue(JTextField ingredientTextField) {
+    private double getNewIngredientValue(JTextField ingredientTextField) throws NumberFormatException  {
         double ingredientAmount;
         if (ingredientTextField.getText().isEmpty()) {
             ingredientAmount = -1;
@@ -123,15 +123,27 @@ public class SupplyScreen extends UtilityScreen {
             loadUpdateSupplyForm();
             formPanel.setVisible(true);
         } else if ("Submit".equals(e.getActionCommand())) {
+            runSubmitCommand();
+        }
+    }
 
-            updateIvalex(getNewIngredientValue(ivalexTextField));
-            updateProPhree(getNewIngredientValue(proPhreeTextField));
-            updateGlycine(getNewIngredientValue(glycineTextField));
+    private void runSubmitCommand() {
+        try {
+            double ivalexValue = getNewIngredientValue(ivalexTextField);
+            double proPhreeValue = getNewIngredientValue(proPhreeTextField);
+            double glycineValue = getNewIngredientValue(glycineTextField);
+
+            updateIvalex(ivalexValue);
+            updateProPhree(proPhreeValue);
+            updateGlycine(glycineValue);
 
             frame.dispose();
             new SupplyScreen(this.feedingApp);
-            JOptionPane.showMessageDialog(frame, "Your Recipe has been updated", "Recipe Updated",
+            JOptionPane.showMessageDialog(frame, "Your Ingredient Supply has been updated", "Recipe Updated",
                     JOptionPane.PLAIN_MESSAGE);
+        } catch (NumberFormatException exception) {
+            JOptionPane.showMessageDialog(frame, "Please enter a numeric value", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 

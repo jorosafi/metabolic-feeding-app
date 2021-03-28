@@ -13,3 +13,6 @@ public class Main {
         new FeedingApp();
     }
 }
+//TODO - Add log averages and totals in LogScreen
+//TODO - Add specifications to the new methods
+//TODO - Test any new methods incorporated to handle GUI
