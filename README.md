@@ -61,7 +61,7 @@ caregiver can input and view information from their phones or any connected devi
 As he starts eating solid foods, it's also important to track the nutritional information of solid foods, 
 so in the long run I would like to find a database of nutritional information for foods that  I can connect to the app. 
 
-###Phase 4: Task 2
+### Phase 4: Task 2
 I used a type hierarchy to build my GUI. I built all the screens in the app using the BasicScreen abstract class,
 which acts as a basic template for the screens. The HomeScreen and LoadScreen directly extend the 
 BasicScreen. The UtilityScreen is an abstract class that extends the BasicScreen and acts as the template for 
@@ -72,8 +72,8 @@ It also holds the feedingApp field, which is used to communicate back and forth 
 subclasses override different methods to manipulate these fields to customize each page as needed. For example, most 
 classes override the setPageTitle() and setBody() methods to customize these page elements. 
 
-###Phase 4: Task 3
-[UML Class Diagram](images/UML-design.png "UML Class Diagram")
+### Phase 4: Task 3
+![UML Class Diagram](images/UML-design.png "UML Class Diagram")
 
 My app design consists of four distinct parts divided across 20 classes. The structure can be divided into:
 - The FeedingApp class, which is the central class that holds all the information for the app, has the console UI,
