@@ -71,3 +71,26 @@ The BasicScreen holds the fields and basic styling for the frame, the page heade
 It also holds the feedingApp field, which is used to communicate back and forth with the FeedingApp class. All the 
 subclasses override different methods to manipulate these fields to customize each page as needed. For example, most 
 classes override the setPageTitle() and setBody() methods to customize these page elements. 
+
+###Phase 4: Task 3
+[UML Class Diagram](images/UML-design.png "UML Class Diagram")
+
+My app design consists of four distinct parts divided across 20 classes. The structure can be divided into:
+- The FeedingApp class, which is the central class that holds all the information for the app, has the console UI,
+and connects the GUI, the persistence and the model packages.
+- The model package holds all the basic functionality of the app. It has the classes for Recipe, Feed, Log, 
+LogList, DailySchedule, and IngredientSupply which define the different components and functionality for the app. 
+- The persistence package contains the Notebook, JSonWriter, JsonReader and the Writeable interface. This package 
+handles the persistence mechanism for the app. 
+- Finally, the graphics package has all the classes that build the GUI for the app. It consists of two abstract classes
+that act as templates and 6 classes that implement the different screens the user can interact with. 
+
+If I had more time to work on this project I would make two changes to my class structure: 
+1. Currently, the Recipe and IngredientSupply classes in the model package extend the Writeable interface to help
+parse the Json file into information that can be used by those classes and vice versa. I would like to break that 
+relationship and handle all the parsing in the Notebook class. This way, Notebook handles all the persistence 
+functionality. 
+2. The Recipe and IngredientSupply classes have a lot of duplicate code. I would like to extract some of that code 
+into an abstract class for those classes to reduce the amount of duplication. When I originally wrote the classes, I 
+didn't realize there would be so much overlap between them, so I did not bother creating a hierarchy for those classes, 
+but in hindsight it would make for better code.  
