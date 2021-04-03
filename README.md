@@ -60,3 +60,14 @@ caregiver can input and view information from their phones or any connected devi
 
 As he starts eating solid foods, it's also important to track the nutritional information of solid foods, 
 so in the long run I would like to find a database of nutritional information for foods that  I can connect to the app. 
+
+###Phase 4: Task 2
+I used a type hierarchy to build my GUI. I built all the screens in the app using the BasicScreen abstract class,
+which acts as a basic template for the screens. The HomeScreen and LoadScreen directly extend the 
+BasicScreen. The UtilityScreen is an abstract class that extends the BasicScreen and acts as the template for 
+FeedingScheduleScreen, RecipeScreen, LogScreen and SupplyScreen.
+
+The BasicScreen holds the fields and basic styling for the frame, the page header, page title, page body, and buttons.
+It also holds the feedingApp field, which is used to communicate back and forth with the FeedingApp class. All the 
+subclasses override different methods to manipulate these fields to customize each page as needed. For example, most 
+classes override the setPageTitle() and setBody() methods to customize these page elements. 
